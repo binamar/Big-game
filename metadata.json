@@ -1,6 +1,0 @@
-{
-  "name": "The Ledger of Ash & Iron",
-  "description": "A ten-chapter procedural visual novel built for Godot 4.7 with an interactive preview.",
-  "requestFramePermissions": [],
-  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
-}
