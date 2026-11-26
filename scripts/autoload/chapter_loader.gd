@@ -1,6 +1,6 @@
 extends Node
 
-const CHAPTER_COUNT := 10
+const CHAPTER_COUNT := 3
 var _chapters: Dictionary = {}
 var _ordered_ids: PackedStringArray = []
 

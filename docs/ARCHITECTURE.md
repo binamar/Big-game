@@ -2,7 +2,9 @@
 
 ## 1. Overview
 
-This project is a **Godot 4.7** visual novel engine written in **GDScript** with **100% procedural visuals** (`_draw()` + `Tween`), zero external art requirements, Android export presets, GitHub Actions CI validation + APK build, and JSON-driven chapters (`res://data/chapters/`).
+*The Ledger of Ash & Iron* is a **Godot 4.7** 2D Visual Novel + Point-and-Click Mystery built in **GDScript** with **100% procedural `_draw()` visuals**, modular self-contained character scenes/scripts, custom `StyleBoxFlat` UI theming, Android export presets (`export_presets.cfg`), and CI headless validation (`.github/workflows/android.yml`).
+
+An accompanying Vite/React preview runner (`package.json`, `index.html`, `src/`) reads directly from the exact same `res://data/chapters/chapter_01.json`–`chapter_03.json` files so the game is also immediately playable inside the AI Studio port-3000 viewport.
 
 ---
 
@@ -10,116 +12,121 @@ This project is a **Godot 4.7** visual novel engine written in **GDScript** with
 
 ```text
 /
-├── project.godot                              # Godot 4.7 configuration & autoloads
-├── export_presets.cfg                         # Android APK / AAB export configuration
+├── project.godot                              # Godot 4.7 config (1280x720 landscape, stretch keep, autoloads)
+├── export_presets.cfg                         # Android APK export configuration
 ├── AGENTS.md                                  # AI session & documentation rules
-├── .github/
-│   └── workflows/
-│       └── android.yml                        # CI: chapter validation, headless parse check, Android export
+├── .github/workflows/android.yml              # CI: chapter validation, headless parse check, APK export
 ├── docs/
-│   ├── STORY_BIBLE.md                         # Single source of truth for lore, cast, and 10-chapter arc
-│   ├── ARCHITECTURE.md                        # Godot paths, autoloads, schema, flags, naming
-│   └── PROGRESS.md                            # Stage & chapter progress tracker + assumptions
+│   ├── STORY_BIBLE.md                         # Single source of truth: 3 characters & 3 chapters
+│   ├── ARCHITECTURE.md                        # Modular character paths, scene schema, flags, UI theme
+│   └── PROGRESS.md                            # Rebuild stage & chapter checklist
 ├── assets/                                    # Optional PNG overrides (empty by default)
 │   ├── portraits/                             # Optional <name>_<expression>.png
 │   └── backdrops/                             # Optional <scene>.png
 ├── data/
 │   └── chapters/
-│       ├── chapter_01.json                    # Chapter 1: Iron & Ink
-│       ├── chapter_02.json                    # Chapter 2: The Dry Road
-│       ├── chapter_03.json                    # Chapter 3: Shadows in the Ledger
-│       ├── chapter_04.json                    # Chapter 4: Before the Council
-│       ├── chapter_05.json                    # Chapter 5: River Barges at Dawn
-│       ├── chapter_06.json                    # Chapter 6: The Forge's Oath
-│       ├── chapter_07.json                    # Chapter 7: The Barred Archive
-│       ├── chapter_08.json                    # Chapter 8: Ridge of Smoke
-│       ├── chapter_09.json                    # Chapter 9: Ash and Tally
-│       └── chapter_10.json                    # Chapter 10: The Open Ledger
+│       ├── chapter_01.json                    # Chapter 1: Cold Coal & Sealed Ink
+│       ├── chapter_02.json                    # Chapter 2: Mud Tracks & Missing Barges
+│       └── chapter_03.json                    # Chapter 3: The Ledger of Dawn
 ├── scenes/
-│   ├── main.tscn                              # Title screen, chapter select, navigation hub
-│   ├── dialogue_stage.tscn                    # Playable visual novel stage & HUD
-│   ├── studio_inspector.tscn                  # Procedural character/expression/backdrop inspector
-│   ├── character_portrait.tscn                # Reusable procedural CharacterPortrait scene
-│   └── backdrop_renderer.tscn                 # Reusable procedural BackdropRenderer scene
+│   ├── main.tscn                              # Title screen & 3-chapter navigation hub
+│   ├── dialogue_stage.tscn                    # Playable VN stage, point-and-click hotspots, choice cards
+│   ├── studio_inspector.tscn                  # Modular character & scene inspector
+│   ├── backdrop_renderer.tscn                 # Procedural layered backdrop & weather particles
+│   └── characters/
+│       ├── torrik_character.tscn              # Self-contained Torrik character scene
+│       ├── myra_character.tscn                # Self-contained Myra character scene
+│       └── orsen_character.tscn               # Self-contained Orsen character scene
 └── scripts/
     ├── validate_chapters.gd                   # Headless SceneTree validator (CI + CLI)
-    ├── main.gd                                # Main menu & chapter select controller
-    ├── dialogue_stage.gd                      # Typewriter, choices, flags, log, chapter flow
-    ├── studio_inspector.gd                    # Live character/expression/backdrop test studio
+    ├── main.gd                                # Title & chapter hub controller
+    ├── dialogue_stage.gd                      # Typewriter, hotspots, branching choices, transitions, log
+    ├── studio_inspector.gd                    # Live character/expression/head-motion/backdrop inspector
     ├── autoload/
-    │   ├── game_state.gd                      # Autoload: GameState (flags, scores, save/load)
-    │   ├── chapter_loader.gd                  # Autoload: ChapterLoader (JSON chapter loading)
+    │   ├── game_state.gd                      # Autoload: GameState (flags, clues, scores, save/load)
+    │   ├── chapter_loader.gd                  # Autoload: ChapterLoader (3 chapters JSON loader)
     │   └── audio_manager.gd                   # Autoload: AudioManager (procedural AudioStreamGenerator FX)
+    ├── ui/
+    │   └── theme_factory.gd                   # Custom StyleBoxFlat theme builder (slate & burnished brass)
     ├── resources/
     │   ├── character_data.gd                  # Resource class: CharacterData
-    │   └── expression_data.gd                 # Resource class: ExpressionData + 8 presets
+    │   └── expression_data.gd                 # Resource class: ExpressionData + 8 expression presets
     ├── data/
-    │   ├── character_registry.gd              # Registry of all 9 characters
-    │   └── backdrop_registry.gd               # Registry of all 12 backdrops & 6 mood palettes
-    └── visuals/
-        ├── character_portrait.gd              # Procedural flat-vector anime portrait (_draw + Tween)
-        └── backdrop_renderer.gd               # Procedural layered scene + parallax + particles (_draw)
+    │   └── backdrop_registry.gd               # Registry of procedural backdrops & 6 mood palettes
+    ├── visuals/
+    │   └── backdrop_renderer.gd               # Procedural layered scene + parallax + particles (_draw)
+    └── characters/
+        ├── character_base.gd                  # Base class: tweened expressions, blink, speaking, head tilt/look L-R
+        ├── character_catalog.gd               # Maps character IDs to dedicated scenes & metadata
+        ├── torrik_character.gd                # Torrik visual model, notebook accessory & chronicler idle cadence
+        ├── myra_character.gd                  # Myra visual model, hood/satchel & scout look-around cadence
+        └── orsen_character.gd                 # Orsen visual model, leather apron/tongs & blacksmith idle cadence
 ```
 
 ---
 
-## 3. Autoloads & Scene Paths
+## 3. Modular Per-Character Design
 
-- **Autoloads** (configured in `project.godot`):
-  - `GameState` -> `res://scripts/autoload/game_state.gd`
-  - `ChapterLoader` -> `res://scripts/autoload/chapter_loader.gd`
-  - `AudioManager` -> `res://scripts/autoload/audio_manager.gd`
-- **Main Scene**: `res://scenes/main.tscn`
-- **Core Scenes**:
-  - `res://scenes/dialogue_stage.tscn`
-  - `res://scenes/studio_inspector.tscn`
-  - `res://scenes/character_portrait.tscn`
-  - `res://scenes/backdrop_renderer.tscn`
+Each of the 3 main characters (`torrik`, `myra`, `orsen`) has its own independent `.tscn` + `.gd` pair extending `CharacterBase`:
+- **Self-Contained Visuals & Model**: Each subclass defines its own `CharacterData` palette and implements `_draw_character_back()`, `_draw_character_body()`, `_draw_character_front_hair()`, and `_draw_character_accessory()` inside `_draw()`.
+- **Lifelike Idle Head Animation**: `CharacterBase` drives:
+  - `_bob_y`: subtle vertical breathing cadence
+  - `_head_tilt_deg`: natural head tilt pivoting around the neck joint `(160, 200)`
+  - `_head_turn_x` & `_look_x / _look_y`: periodic left-to-right eye glances coupled with subtle head follow-through, customized by each character's `tilt_speed`, `tilt_amplitude`, and `look_interval`
+  - `_blink_open`: randomized eye blinks
+  - `is_speaking`: typewriter-synchronized mouth movement
+  - `trigger_shock()`: crisp horizontal decay shake
+- **Conflict-Free Stage Mounting**: `DialogueStage` spawns one named persistent node per character (`torrik`, `myra`, `orsen`) and moves/positions them into `LeftSlot`, `CenterSlot`, or `RightSlot` without destroying/duplicating state across consecutive lines.
 
 ---
 
-## 4. Chapter JSON Schema
+## 4. Chapter JSON Schema (`res://data/chapters/chapter_01..03.json`)
 
-Every chapter file under `res://data/chapters/chapter_XX.json` conforms to this schema:
+Nodes support standard dialogue, branching choices, `conditionFlag` checks, and interactive point-and-click `investigation` scenes:
 
 ```json
 {
-  "id": "chapter_01",
-  "number": 1,
-  "title": "Iron & Ink",
-  "subtitle": "Outer Ward Audit",
-  "summary": "Haldor sends Torrik with a sealed ledger to inspect missing coal and iron shipments.",
-  "startNode": "c1_start",
-  "nextChapterId": "chapter_02",
-  "nodes": {
-    "c1_start": {
-      "id": "c1_start",
-      "backdrop": "small_guild_hall",
-      "mood": "warm",
-      "particles": "dust",
-      "speaker": "haldor",
-      "speakerName": "Haldor",
-      "expression": "determined",
-      "characters": [
-        { "id": "haldor", "expression": "determined", "position": "left", "active": true },
-        { "id": "torrik", "expression": "neutral", "position": "right", "active": false }
-      ],
-      "text": "Keep your notebook strapped tight, Torrik.",
-      "next": "c1_haldor_2"
-    }
+  "id": "c1_hall_inspect",
+  "backdrop": "small_guild_hall",
+  "mood": "warm",
+  "particles": "dust",
+  "speaker": "torrik",
+  "speakerName": "Torrik",
+  "expression": "determined",
+  "characters": [
+    { "id": "torrik", "expression": "determined", "position": "left", "active": true },
+    { "id": "myra", "expression": "worried", "position": "right", "active": false }
+  ],
+  "text": "Before we face Orsen, inspect the ledger chest, quota board, and Myra's courier satchel.",
+  "investigation": {
+    "prompt": "Click scene objects to inspect evidence",
+    "requiredCount": 2,
+    "continueLabel": "Walk to the Blacksmith Workshop",
+    "continueNext": "c1_forge_arrive",
+    "hotspots": [
+      {
+        "id": "hs_chest",
+        "label": "Dispatch Chest Seal",
+        "x": 0.24,
+        "y": 0.44,
+        "speaker": "torrik",
+        "speakerName": "Torrik",
+        "expression": "surprised",
+        "text": "The wax seal sits over freshly scraped ink.",
+        "setFlags": { "found_scraped_seal": true },
+        "addScore": { "guild_standing": 1 }
+      }
+    ]
   }
 }
 ```
 
 ### Validation Rules (`res://scripts/validate_chapters.gd`)
-- `startNode` must exist in `nodes`.
-- `speaker` must be `"narrator"` or one of the 9 characters (`torrik`, `orsen`, `myra`, `haldor`, `nova`, `fennick`, `ilvar`, `selva`, `rowan`).
+- Strictly 3 chapters (`chapter_01.json`..`chapter_03.json`), all with valid `startNode`.
+- `speaker` must be `"narrator"`, `"torrik"`, `"myra"`, or `"orsen"`.
 - `expression` must be one of `neutral`, `sad`, `angry`, `surprised`, `worried`, `determined`, `smug`, `tired`.
-- `backdrop` must be one of the 12 scene IDs (`small_guild_hall`, `blacksmith_workshop`, `city_square`, `great_guild_headquarters`, `ruined_village`, `army_camp_dusk`, `mountain_road`, `night_alley`, `archive_room`, `rainy_street`, `dry_farmland`, `council_chamber`).
-- `mood` (if present) must be one of `calm`, `tense`, `somber`, `urgent`, `warm`, `bleak`.
-- `particles` (if present) must be one of `none`, `rain`, `dust`, `embers`.
-- All `next`, `choices[].next`, and `conditionFlag.fallbackNext` IDs must exist in `nodes`.
-- Every node in `nodes` must be reachable from `startNode` (BFS traversal).
+- `backdrop`, `mood`, and `particles` must match `BackdropRegistry`.
+- Every `next`, `choices[].next`, `conditionFlag.fallbackNext`, and `investigation.continueNext` must resolve to a node in `nodes`, and every node must be reachable from `startNode`.
 
 ---
 
@@ -127,21 +134,17 @@ Every chapter file under `res://data/chapters/chapter_XX.json` conforms to this 
 
 | Variable / Flag | Type | Default | Description |
 | :--- | :--- | :--- | :--- |
-| `trust_orsen` | bool | `false` | Earned Orsen's forge tallies openly in Chapter 1 |
-| `confronted_fennick` | bool | `false` | Challenged Fennick publicly in the City Square (Chapter 1) |
-| `spoke_for_selva` | bool | `false` | Recorded Selva's village petition in the official ledger (Chapter 2) |
-| `saved_receipts` | bool | `false` | Secured Rowan's camp supply receipts (Chapter 2) |
-| `allied_ilvar` | bool | `false` | Shared field notes openly with Archivist Ilvar (Chapter 3) |
-| `spared_lockmaster` | bool | `false` | Protected the coerced lockmaster in exchange for barge logs (Chapter 5) |
-| `protected_vault` | bool | `false` | Rescued the duplicate harbor registers in the Archive Room (Chapter 7) |
-| `shared_relief` | bool | `false` | Left emergency grain rations at Selva's ruined village (Chapter 8) |
-| `guild_standing` | int | `0` | Cumulative credibility score deciding the Chapter 10 charter outcome |
-
----
-
-## 6. Naming Conventions
-
-- Script & scene filenames: `snake_case.gd` / `snake_case.tscn`.
-- GDScript classes: `PascalCase` (`CharacterPortrait`, `BackdropRenderer`, `CharacterData`, `ExpressionData`).
-- Character IDs, Expression IDs, Backdrop IDs, Node IDs: `snake_case`.
-- Chapter files: `res://data/chapters/chapter_01.json` .. `res://data/chapters/chapter_10.json`.
+| `found_scraped_seal` | bool | `false` | Chapter 1 hotspot clue: scraped wax seal on dispatch chest |
+| `found_mud_clue` | bool | `false` | Chapter 1 hotspot clue: river clay on Myra's satchel |
+| `found_axle_clue` | bool | `false` | Chapter 1 hotspot clue: river-barge mark on cracked wagon axle |
+| `trust_orsen` | bool | `false` | Chapter 1 choice: shared open ledger honestly with Orsen |
+| `cautious_audit` | bool | `false` | Chapter 1 choice: kept guild protocol pending verification |
+| `found_windmill_ribbon` | bool | `false` | Chapter 2 hotspot clue: Quartermaster manifest ribbon |
+| `found_lime_sacks` | bool | `false` | Chapter 2 hotspot clue: iron-weighted sacks disguised with chaff |
+| `valley_road_alley` | bool | `false` | Chapter 2 road split: ambushed barge loaders in night alley |
+| `spared_witness` | bool | `false` | Chapter 2 choice: protected coerced lockhouse clerk for testimony |
+| `seized_manifest` | bool | `false` | Chapter 2 choice: confiscated lockhouse manifest book outright |
+| `found_prefilled_box` | bool | `false` | Chapter 3 hotspot clue: pre-signed council vote box |
+| `found_burnt_invoice` | bool | `false` | Chapter 3 hotspot clue: charred false coal invoice in brazier |
+| `ending_id` | string | `""` | Final Chapter 3 epilogue path (`open_charter`, `winter_road`, `silent_reckoning`) |
+| `guild_standing` | int | `0` | Credibility & evidence score across Chapters 1–3 |

@@ -1,11 +1,13 @@
 extends Node
 
-const SAVE_PATH := "user://ledger_save_v1.json"
+const SAVE_PATH := "user://ledger_save_v2.json"
 
 var current_chapter_id: String = "chapter_01"
 var current_node_id: String = "c1_start"
 var flags: Dictionary = {}
 var scores: Dictionary = {}
+var inspected_hotspots: Dictionary = {}
+var ending_id: String = ""
 var history: Array = []
 
 func _ready() -> void:
@@ -15,18 +17,24 @@ func reset_defaults() -> void:
 	current_chapter_id = "chapter_01"
 	current_node_id = "c1_start"
 	flags = {
+		"found_scraped_seal": false,
+		"found_mud_clue": false,
+		"found_axle_clue": false,
 		"trust_orsen": false,
-		"confronted_fennick": false,
-		"spoke_for_selva": false,
-		"saved_receipts": false,
-		"allied_ilvar": false,
-		"spared_lockmaster": false,
-		"protected_vault": false,
-		"shared_relief": false,
+		"cautious_audit": false,
+		"found_windmill_ribbon": false,
+		"found_lime_sacks": false,
+		"valley_road_alley": false,
+		"spared_witness": false,
+		"seized_manifest": false,
+		"found_prefilled_box": false,
+		"found_burnt_invoice": false,
 	}
 	scores = {
 		"guild_standing": 0,
 	}
+	inspected_hotspots = {}
+	ending_id = ""
 	history = []
 
 func start_chapter(chapter_id: String, start_node_id: String, reset_progress: bool = false) -> void:
@@ -45,6 +53,24 @@ func add_scores(extra_scores: Dictionary) -> void:
 		var current_val: int = int(scores.get(key, 0))
 		scores[key] = current_val + int(extra_scores[key])
 
+func mark_hotspot_inspected(node_id: String, hotspot_id: String) -> void:
+	if not inspected_hotspots.has(node_id):
+		inspected_hotspots[node_id] = []
+	var arr: Array = inspected_hotspots[node_id]
+	if not arr.has(hotspot_id):
+		arr.append(hotspot_id)
+		inspected_hotspots[node_id] = arr
+
+func is_hotspot_inspected(node_id: String, hotspot_id: String) -> bool:
+	if not inspected_hotspots.has(node_id):
+		return false
+	return (inspected_hotspots[node_id] as Array).has(hotspot_id)
+
+func get_inspected_count(node_id: String) -> int:
+	if not inspected_hotspots.has(node_id):
+		return 0
+	return (inspected_hotspots[node_id] as Array).size()
+
 func record_history(chapter_id: String, node_id: String, speaker_name: String, text: String) -> void:
 	history.append({
 		"chapterId": chapter_id,
@@ -52,7 +78,7 @@ func record_history(chapter_id: String, node_id: String, speaker_name: String, t
 		"speakerName": speaker_name,
 		"text": text,
 	})
-	if history.size() > 60:
+	if history.size() > 80:
 		history.pop_front()
 
 func get_flag(flag_name: String) -> bool:
@@ -70,6 +96,8 @@ func save_game() -> void:
 		"currentNodeId": current_node_id,
 		"flags": flags,
 		"scores": scores,
+		"inspectedHotspots": inspected_hotspots,
+		"endingId": ending_id,
 		"history": history,
 	}
 	var file := FileAccess.open(SAVE_PATH, FileAccess.WRITE)
@@ -98,6 +126,10 @@ func load_game() -> bool:
 	if typeof(loaded_scores) == TYPE_DICTIONARY:
 		for k in loaded_scores.keys():
 			scores[k] = int(loaded_scores[k])
+	var loaded_hs = parsed.get("inspectedHotspots", {})
+	if typeof(loaded_hs) == TYPE_DICTIONARY:
+		inspected_hotspots = loaded_hs
+	ending_id = str(parsed.get("endingId", ""))
 	var loaded_history = parsed.get("history", [])
 	if typeof(loaded_history) == TYPE_ARRAY:
 		history = loaded_history

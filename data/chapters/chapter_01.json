@@ -1,9 +1,9 @@
 {
   "id": "chapter_01",
   "number": 1,
-  "title": "Iron & Ink",
+  "title": "Cold Coal & Sealed Ink",
   "subtitle": "Outer Ward Audit",
-  "summary": "Haldor sends Torrik with a sealed ledger to inspect missing coal and iron shipments in the Outer Ward.",
+  "summary": "Myra rides in from the south track with an unsealed warning. Inspect the guild hall and Orsen's cold forge to uncover why winter coal never arrived.",
   "startNode": "c1_start",
   "nextChapterId": "chapter_02",
   "nodes": {
@@ -12,63 +12,120 @@
       "backdrop": "small_guild_hall",
       "mood": "warm",
       "particles": "dust",
-      "speaker": "haldor",
-      "speakerName": "Haldor",
-      "expression": "determined",
+      "speaker": "torrik",
+      "speakerName": "Torrik",
+      "expression": "tired",
       "characters": [
-        { "id": "haldor", "expression": "determined", "position": "left", "active": true },
-        { "id": "torrik", "expression": "neutral", "position": "right", "active": false }
+        { "id": "torrik", "expression": "tired", "position": "left", "active": true }
       ],
-      "text": "Keep your notebook strapped tight, Torrik. The winter audit leaves no room for smudged ink or polite guesses.",
-      "next": "c1_haldor_2"
+      "text": "Fourteen iron carts signed out under High Quarter ink, and only nine tallies on our gate slate. Either my arithmetic failed after midnight, or someone is shaving five wagons off the ledger.",
+      "next": "c1_myra_bursts_in"
     },
-    "c1_haldor_2": {
-      "id": "c1_haldor_2",
+    "c1_myra_bursts_in": {
+      "id": "c1_myra_bursts_in",
+      "backdrop": "small_guild_hall",
+      "mood": "urgent",
+      "particles": "dust",
+      "speaker": "myra",
+      "speakerName": "Myra",
+      "expression": "worried",
+      "shake": true,
+      "characters": [
+        { "id": "torrik", "expression": "surprised", "position": "left", "active": false, "shake": true },
+        { "id": "myra", "expression": "worried", "position": "right", "active": true }
+      ],
+      "text": "Spoiler for your inkwell, Torrik—your arithmetic is fine. The south road watch hasn't seen a single winter grain wagon since Tuesday.",
+      "next": "c1_torrik_reply"
+    },
+    "c1_torrik_reply": {
+      "id": "c1_torrik_reply",
+      "backdrop": "small_guild_hall",
+      "mood": "tense",
+      "particles": "dust",
+      "speaker": "torrik",
+      "speakerName": "Torrik",
+      "expression": "surprised",
+      "characters": [
+        { "id": "torrik", "expression": "surprised", "position": "left", "active": true },
+        { "id": "myra", "expression": "determined", "position": "right", "active": false }
+      ],
+      "text": "Myra? You're soaked to the knees. Wait—if no wagons crossed the south gate, why does the High Quarter dispatch chest claim full delivery?",
+      "next": "c1_myra_banter"
+    },
+    "c1_myra_banter": {
+      "id": "c1_myra_banter",
+      "backdrop": "small_guild_hall",
+      "mood": "warm",
+      "particles": "dust",
+      "speaker": "myra",
+      "speakerName": "Myra",
+      "expression": "smug",
+      "characters": [
+        { "id": "torrik", "expression": "worried", "position": "left", "active": false },
+        { "id": "myra", "expression": "smug", "position": "right", "active": true }
+      ],
+      "text": "Because paper never gets stuck in river mud, clerk. Put down that pen and look closely at the room before we walk over to Orsen's forge.",
+      "next": "c1_hall_inspect"
+    },
+    "c1_hall_inspect": {
+      "id": "c1_hall_inspect",
       "backdrop": "small_guild_hall",
       "mood": "warm",
       "particles": "dust",
       "speaker": "torrik",
       "speakerName": "Torrik",
-      "expression": "worried",
+      "expression": "determined",
       "characters": [
-        { "id": "haldor", "expression": "tired", "position": "left", "active": false },
-        { "id": "torrik", "expression": "worried", "position": "right", "active": true }
+        { "id": "torrik", "expression": "determined", "position": "left", "active": true },
+        { "id": "myra", "expression": "neutral", "position": "right", "active": false }
       ],
-      "text": "Three iron carts signed out under the Great Guild seal never reached the Outer Ward ledger. Could it be a dockside miscount?",
-      "next": "c1_haldor_3"
-    },
-    "c1_haldor_3": {
-      "id": "c1_haldor_3",
-      "backdrop": "small_guild_hall",
-      "mood": "calm",
-      "particles": "dust",
-      "speaker": "haldor",
-      "speakerName": "Haldor",
-      "expression": "tired",
-      "characters": [
-        { "id": "haldor", "expression": "tired", "position": "left", "active": true },
-        { "id": "torrik", "expression": "determined", "position": "right", "active": false }
-      ],
-      "text": "Ask Orsen at the forge before you repeat that hope aloud. Start at his workshop, then check the square.",
-      "next": "c1_forge_arrive"
+      "text": "Click the glowing points across the hall to inspect the quota board, the sealed dispatch chest, and Myra's mud-caked satchel.",
+      "investigation": {
+        "prompt": "Inspect at least 2 clues in the Small Guild Hall",
+        "requiredCount": 2,
+        "continueLabel": "Walk to Orsen's Forge",
+        "continueNext": "c1_forge_arrive",
+        "hotspots": [
+          {
+            "id": "hs_board",
+            "label": "Quota Chalkboard",
+            "x": 0.22,
+            "y": 0.36,
+            "speaker": "torrik",
+            "speakerName": "Torrik",
+            "expression": "determined",
+            "text": "Every outer post tally is struck through in fresh chalk—and someone re-numbered carts ten through fourteen in a tighter hand.",
+            "addScore": { "guild_standing": 1 }
+          },
+          {
+            "id": "hs_chest",
+            "label": "Dispatch Wax Seal",
+            "x": 0.50,
+            "y": 0.58,
+            "speaker": "torrik",
+            "speakerName": "Torrik",
+            "expression": "surprised",
+            "text": "Look under the crimson wax—knife scrapes! The High Quarter seal was pressed on AFTER the tonnage figure was altered.",
+            "setFlags": { "found_scraped_seal": true },
+            "addScore": { "guild_standing": 1 }
+          },
+          {
+            "id": "hs_satchel",
+            "label": "Myra's Muddy Satchel",
+            "x": 0.78,
+            "y": 0.52,
+            "speaker": "myra",
+            "speakerName": "Myra",
+            "expression": "determined",
+            "text": "Pale grey river clay—not mountain gravel. Whatever convoy left town tonight turned west toward the river lockhouse, not up the pass.",
+            "setFlags": { "found_mud_clue": true },
+            "addScore": { "guild_standing": 1 }
+          }
+        ]
+      }
     },
     "c1_forge_arrive": {
       "id": "c1_forge_arrive",
-      "backdrop": "blacksmith_workshop",
-      "mood": "tense",
-      "particles": "embers",
-      "speaker": "narrator",
-      "speakerName": "Narrator",
-      "expression": "neutral",
-      "characters": [
-        { "id": "orsen", "expression": "angry", "position": "left", "active": false },
-        { "id": "torrik", "expression": "neutral", "position": "right", "active": false }
-      ],
-      "text": "Heat from the low hearth washes across Orsen's soot-darkened apron. His hammers sit silent along the rack.",
-      "next": "c1_orsen_greet"
-    },
-    "c1_orsen_greet": {
-      "id": "c1_orsen_greet",
       "backdrop": "blacksmith_workshop",
       "mood": "tense",
       "particles": "embers",
@@ -77,55 +134,30 @@
       "expression": "angry",
       "characters": [
         { "id": "orsen", "expression": "angry", "position": "left", "active": true },
-        { "id": "torrik", "expression": "worried", "position": "right", "active": false }
+        { "id": "torrik", "expression": "worried", "position": "center", "active": false },
+        { "id": "myra", "expression": "neutral", "position": "right", "active": false }
       ],
-      "text": "Another clerk with clean cuffs and a fresh notebook? Tell the High Quarter I cannot shoe cavalry with cold coal and empty promises.",
-      "next": "c1_orsen_choice"
+      "text": "Hold right there on the threshold. If you two came with another polite High Quarter requisition, shove it straight into the cold ashes.",
+      "next": "c1_forge_myra_quips"
     },
-    "c1_orsen_choice": {
-      "id": "c1_orsen_choice",
+    "c1_forge_myra_quips": {
+      "id": "c1_forge_myra_quips",
       "backdrop": "blacksmith_workshop",
       "mood": "tense",
       "particles": "embers",
-      "speaker": "torrik",
-      "speakerName": "Torrik",
-      "expression": "worried",
+      "speaker": "myra",
+      "speakerName": "Myra",
+      "expression": "smug",
       "characters": [
         { "id": "orsen", "expression": "angry", "position": "left", "active": false },
-        { "id": "torrik", "expression": "worried", "position": "right", "active": true }
+        { "id": "torrik", "expression": "neutral", "position": "center", "active": false },
+        { "id": "myra", "expression": "smug", "position": "right", "active": true }
       ],
-      "text": "Orsen grips the edge of his anvil, waiting to see whether I came to blame him or actually count the coal.",
-      "choices": [
-        {
-          "label": "Open the audit ledger and show the missing cart numbers",
-          "next": "c1_orsen_honest",
-          "setFlags": { "trust_orsen": true },
-          "addScore": { "guild_standing": 1 }
-        },
-        {
-          "label": "Invoke the Great Guild seal and demand his forge receipts",
-          "next": "c1_orsen_strict",
-          "setFlags": { "trust_orsen": false }
-        }
-      ]
+      "text": "Good evening to you too, Orsen. Torrik didn't come to bill you—he thinks someone stole five carts of your coal before they cleared the market gate.",
+      "next": "c1_forge_orsen_skeptic"
     },
-    "c1_orsen_honest": {
-      "id": "c1_orsen_honest",
-      "backdrop": "blacksmith_workshop",
-      "mood": "warm",
-      "particles": "embers",
-      "speaker": "orsen",
-      "speakerName": "Orsen",
-      "expression": "determined",
-      "characters": [
-        { "id": "orsen", "expression": "determined", "position": "left", "active": true },
-        { "id": "torrik", "expression": "determined", "position": "right", "active": false }
-      ],
-      "text": "Good. You actually marked the wagon weights. Take my stamped chalk tally—someone diverted the north carts past the market gate.",
-      "next": "c1_square_arrive"
-    },
-    "c1_orsen_strict": {
-      "id": "c1_orsen_strict",
+    "c1_forge_orsen_skeptic": {
+      "id": "c1_forge_orsen_skeptic",
       "backdrop": "blacksmith_workshop",
       "mood": "tense",
       "particles": "embers",
@@ -134,101 +166,180 @@
       "expression": "tired",
       "characters": [
         { "id": "orsen", "expression": "tired", "position": "left", "active": true },
-        { "id": "torrik", "expression": "neutral", "position": "right", "active": false }
+        { "id": "torrik", "expression": "determined", "position": "center", "active": false },
+        { "id": "myra", "expression": "neutral", "position": "right", "active": false }
       ],
-      "text": "Take the slips off the hook if you want paper. Just remember paper won't keep the border horses shod when the pass freezes.",
-      "next": "c1_square_arrive"
+      "text": "Then don't stand there guessing with clean boots. Look around my floor yourself and tell me what you see.",
+      "next": "c1_forge_inspect"
     },
-    "c1_square_arrive": {
-      "id": "c1_square_arrive",
-      "backdrop": "city_square",
-      "mood": "calm",
-      "particles": "dust",
-      "speaker": "fennick",
-      "speakerName": "Fennick",
-      "expression": "smug",
-      "characters": [
-        { "id": "fennick", "expression": "smug", "position": "left", "active": true },
-        { "id": "torrik", "expression": "neutral", "position": "right", "active": false }
-      ],
-      "text": "Ah, young Torrik! Always scribbling in the margins. Surely you aren't troubling honest merchants over a minor freight delay?",
-      "next": "c1_fennick_choice"
-    },
-    "c1_fennick_choice": {
-      "id": "c1_fennick_choice",
-      "backdrop": "city_square",
+    "c1_forge_inspect": {
+      "id": "c1_forge_inspect",
+      "backdrop": "blacksmith_workshop",
       "mood": "tense",
-      "particles": "dust",
+      "particles": "embers",
+      "speaker": "orsen",
+      "speakerName": "Orsen",
+      "expression": "neutral",
+      "characters": [
+        { "id": "orsen", "expression": "neutral", "position": "left", "active": true },
+        { "id": "torrik", "expression": "determined", "position": "center", "active": false },
+        { "id": "myra", "expression": "neutral", "position": "right", "active": false }
+      ],
+      "text": "Inspect the forge hearth, tool rack, and cracked wagon axle to verify Orsen's missing coal shipments.",
+      "investigation": {
+        "prompt": "Examine Orsen's Workshop (2 clues required)",
+        "requiredCount": 2,
+        "continueLabel": "Decide How to Address Orsen",
+        "continueNext": "c1_orsen_choice",
+        "hotspots": [
+          {
+            "id": "hs_hearth",
+            "label": "Cold Coal Hearth",
+            "x": 0.25,
+            "y": 0.56,
+            "speaker": "orsen",
+            "speakerName": "Orsen",
+            "expression": "angry",
+            "text": "Half slate rubble, wet to the core. Four apprentices are freezing because the Quartermaster's bins sent us quarry sweepings instead of anthracite.",
+            "addScore": { "guild_standing": 1 }
+          },
+          {
+            "id": "hs_axle",
+            "label": "Branded Wagon Axle",
+            "x": 0.72,
+            "y": 0.64,
+            "speaker": "torrik",
+            "speakerName": "Torrik",
+            "expression": "surprised",
+            "text": "Wait—this snapped axle bears a River Lockhouse harbor punch beneath the iron rim! Why was a river freight cart hauling ward iron?",
+            "setFlags": { "found_axle_clue": true },
+            "addScore": { "guild_standing": 1 }
+          },
+          {
+            "id": "hs_anvil",
+            "label": "Anvil & Scrap Tally",
+            "x": 0.54,
+            "y": 0.68,
+            "speaker": "myra",
+            "speakerName": "Myra",
+            "expression": "worried",
+            "text": "Orsen's been reforging bent plowshares just to keep horses shod. Whoever took the real iron left the Outer Ward bare.",
+            "addScore": { "guild_standing": 1 }
+          }
+        ]
+      }
+    },
+    "c1_orsen_choice": {
+      "id": "c1_orsen_choice",
+      "backdrop": "blacksmith_workshop",
+      "mood": "tense",
+      "particles": "embers",
       "speaker": "torrik",
       "speakerName": "Torrik",
       "expression": "determined",
       "characters": [
-        { "id": "fennick", "expression": "smug", "position": "left", "active": false },
-        { "id": "torrik", "expression": "determined", "position": "right", "active": true }
+        { "id": "orsen", "expression": "determined", "position": "left", "active": false },
+        { "id": "torrik", "expression": "determined", "position": "center", "active": true },
+        { "id": "myra", "expression": "worried", "position": "right", "active": false }
       ],
-      "text": "Fennick adjusts his gold-trimmed cloak as townsfolk pass the dry fountain. He wants me to close the notebook right here.",
+      "text": "Orsen leans over his anvil, waiting to see whether I treat him as a suspect or an ally.",
       "choices": [
         {
-          "label": "Challenge his shipping manifest openly beside the fountain",
-          "next": "c1_fennick_challenge",
-          "setFlags": { "confronted_fennick": true },
-          "addScore": { "guild_standing": 1 }
+          "label": "Open my private ledger openly and ask Orsen to co-sign the tally",
+          "next": "c1_branch_open",
+          "setFlags": { "trust_orsen": true, "cautious_audit": false },
+          "addScore": { "guild_standing": 2 }
         },
         {
-          "label": "Pocket the discrepancy quietly and keep observing",
-          "next": "c1_fennick_quiet",
-          "setFlags": { "confronted_fennick": false }
+          "label": "Keep the official guild ledger sealed until Myra verifies the river track",
+          "next": "c1_branch_cautious",
+          "setFlags": { "trust_orsen": false, "cautious_audit": true },
+          "addScore": { "guild_standing": 1 }
         }
       ]
     },
-    "c1_fennick_challenge": {
-      "id": "c1_fennick_challenge",
-      "backdrop": "city_square",
-      "mood": "tense",
-      "particles": "dust",
-      "speaker": "fennick",
-      "speakerName": "Fennick",
-      "expression": "angry",
-      "shake": true,
+    "c1_branch_open": {
+      "id": "c1_branch_open",
+      "backdrop": "blacksmith_workshop",
+      "mood": "warm",
+      "particles": "embers",
+      "speaker": "orsen",
+      "speakerName": "Orsen",
+      "expression": "determined",
       "characters": [
-        { "id": "fennick", "expression": "angry", "position": "left", "active": true, "shake": true },
-        { "id": "torrik", "expression": "determined", "position": "right", "active": false }
+        { "id": "orsen", "expression": "determined", "position": "left", "active": true },
+        { "id": "torrik", "expression": "determined", "position": "center", "active": false },
+        { "id": "myra", "expression": "smug", "position": "right", "active": false }
       ],
-      "text": "Careful, clerk. Questions shouted in a crowded square carry farther than your rank can afford.",
-      "next": "c1_rainy_arrival"
+      "text": "Hmph. First clerk in five years with spine enough to show his own ink. Give me that pen—I'm marking my hammer stamp beside every missing cart.",
+      "next": "c1_branch_open_myra"
     },
-    "c1_fennick_quiet": {
-      "id": "c1_fennick_quiet",
-      "backdrop": "city_square",
-      "mood": "calm",
-      "particles": "dust",
-      "speaker": "fennick",
-      "speakerName": "Fennick",
+    "c1_branch_open_myra": {
+      "id": "c1_branch_open_myra",
+      "backdrop": "blacksmith_workshop",
+      "mood": "warm",
+      "particles": "embers",
+      "speaker": "myra",
+      "speakerName": "Myra",
       "expression": "smug",
       "characters": [
-        { "id": "fennick", "expression": "smug", "position": "left", "active": true },
-        { "id": "torrik", "expression": "neutral", "position": "right", "active": false }
+        { "id": "orsen", "expression": "neutral", "position": "left", "active": false },
+        { "id": "torrik", "expression": "determined", "position": "center", "active": false },
+        { "id": "myra", "expression": "smug", "position": "right", "active": true }
       ],
-      "text": "Sensible lad. Leave the high ledgers to the Quartermaster's office and stick to counting nails.",
-      "next": "c1_rainy_arrival"
+      "text": "Now we look like a proper audit team. Grab a heavy coat, Orsen—the rain outside isn't waiting for sunrise.",
+      "next": "c1_rainy_street"
     },
-    "c1_rainy_arrival": {
-      "id": "c1_rainy_arrival",
+    "c1_branch_cautious": {
+      "id": "c1_branch_cautious",
+      "backdrop": "blacksmith_workshop",
+      "mood": "tense",
+      "particles": "embers",
+      "speaker": "orsen",
+      "speakerName": "Orsen",
+      "expression": "tired",
+      "characters": [
+        { "id": "orsen", "expression": "tired", "position": "left", "active": true },
+        { "id": "torrik", "expression": "worried", "position": "center", "active": false },
+        { "id": "myra", "expression": "neutral", "position": "right", "active": false }
+      ],
+      "text": "Careful with your little wax rules, clerk. Still—since Myra vouches for you, I'll bring my pry-bar and see those tracks with my own eyes.",
+      "next": "c1_rainy_street"
+    },
+    "c1_rainy_street": {
+      "id": "c1_rainy_street",
       "backdrop": "rainy_street",
       "mood": "somber",
       "particles": "rain",
       "speaker": "myra",
       "speakerName": "Myra",
-      "expression": "worried",
+      "expression": "determined",
       "characters": [
-        { "id": "myra", "expression": "worried", "position": "left", "active": true },
-        { "id": "torrik", "expression": "surprised", "position": "right", "active": false }
+        { "id": "torrik", "expression": "determined", "position": "left", "active": false },
+        { "id": "myra", "expression": "determined", "position": "center", "active": true },
+        { "id": "orsen", "expression": "neutral", "position": "right", "active": false }
       ],
-      "text": "Torrik! Good—I caught you before dusk. Rain's washing out the south track, and the border camp sent word: no grain arrived at all.",
-      "next": "c1_myra_end"
+      "text": "Look down by the gutter cobblestones! Deep iron-rimmed ruts cutting straight away from the south gate toward the dry valley road.",
+      "next": "c1_rainy_orsen"
     },
-    "c1_myra_end": {
-      "id": "c1_myra_end",
+    "c1_rainy_orsen": {
+      "id": "c1_rainy_orsen",
+      "backdrop": "rainy_street",
+      "mood": "somber",
+      "particles": "rain",
+      "speaker": "orsen",
+      "speakerName": "Orsen",
+      "expression": "angry",
+      "characters": [
+        { "id": "torrik", "expression": "determined", "position": "left", "active": false },
+        { "id": "myra", "expression": "worried", "position": "center", "active": false },
+        { "id": "orsen", "expression": "angry", "position": "right", "active": true }
+      ],
+      "text": "Four-inch tire width, loaded past the hubs. That's our Outer Ward pig iron rolling toward the river lockhouse under cover of storm.",
+      "next": "c1_end"
+    },
+    "c1_end": {
+      "id": "c1_end",
       "backdrop": "rainy_street",
       "mood": "urgent",
       "particles": "rain",
@@ -236,10 +347,11 @@
       "speakerName": "Torrik",
       "expression": "determined",
       "characters": [
-        { "id": "myra", "expression": "determined", "position": "left", "active": false },
-        { "id": "torrik", "expression": "determined", "position": "right", "active": true }
+        { "id": "torrik", "expression": "determined", "position": "left", "active": true },
+        { "id": "myra", "expression": "determined", "position": "center", "active": false },
+        { "id": "orsen", "expression": "determined", "position": "right", "active": false }
       ],
-      "text": "Then the outer audit cannot stay inside the walls. Pack your satchel, Myra—we ride for the dry valley at dawn.",
+      "text": "We follow those tracks at first light before the mud dries or the barges cast off. Chapter 1 complete—onward to the valley road.",
       "endChapter": true,
       "next": null
     }

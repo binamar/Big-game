@@ -1,143 +1,322 @@
 {
   "id": "chapter_03",
   "number": 3,
-  "title": "Shadows in the Ledger",
-  "subtitle": "The High Quarter Vaults",
-  "summary": "Slipping back through a night alley, Torrik partners with Senior Archivist Ilvar to verify Fennick's duplicate books.",
+  "title": "The Ledger of Dawn",
+  "subtitle": "Council Reckoning",
+  "summary": "Storm the Great Guild Council before the requisition vote closes, uncover hidden chamber tampering, and choose the Outer Ward's future.",
   "startNode": "c3_start",
-  "nextChapterId": "chapter_04",
+  "nextChapterId": null,
   "nodes": {
     "c3_start": {
       "id": "c3_start",
-      "backdrop": "night_alley",
-      "mood": "tense",
-      "particles": "none",
-      "speaker": "nova",
-      "speakerName": "Nova",
-      "expression": "worried",
-      "characters": [
-        { "id": "nova", "expression": "worried", "position": "left", "active": true },
-        { "id": "torrik", "expression": "tired", "position": "right", "active": false }
-      ],
-      "text": "Stay under the eaves until the lantern watch turns the corner. Fennick's clerks have been asking Haldor's hall when you return.",
-      "next": "c3_alley_2"
-    },
-    "c3_alley_2": {
-      "id": "c3_alley_2",
-      "backdrop": "night_alley",
+      "backdrop": "great_guild_headquarters",
       "mood": "tense",
       "particles": "none",
       "speaker": "torrik",
       "speakerName": "Torrik",
       "expression": "determined",
       "characters": [
-        { "id": "nova", "expression": "neutral", "position": "left", "active": false },
-        { "id": "torrik", "expression": "determined", "position": "right", "active": true }
+        { "id": "torrik", "expression": "determined", "position": "left", "active": true },
+        { "id": "myra", "expression": "determined", "position": "center", "active": false },
+        { "id": "orsen", "expression": "angry", "position": "right", "active": false }
       ],
-      "text": "Then we go straight to the Archive Room before sunrise. Only Senior Archivist Ilvar holds the duplicate carbon copies.",
-      "next": "c3_archive_enter"
+      "text": "The marble steps of Great Guild Headquarters. Guards are already drawing the heavy oak doors shut for the closed-door emergency vote.",
+      "next": "c3_orsen_push"
     },
-    "c3_archive_enter": {
-      "id": "c3_archive_enter",
-      "backdrop": "archive_room",
-      "mood": "warm",
-      "particles": "dust",
-      "speaker": "ilvar",
-      "speakerName": "Ilvar",
-      "expression": "neutral",
-      "characters": [
-        { "id": "ilvar", "expression": "neutral", "position": "left", "active": true },
-        { "id": "torrik", "expression": "tired", "position": "right", "active": false }
-      ],
-      "text": "Wipe the mud from your sleeves before touching my shelves, apprentice. Why wake the vault at the fourth watch?",
-      "next": "c3_ilvar_choice"
-    },
-    "c3_ilvar_choice": {
-      "id": "c3_ilvar_choice",
-      "backdrop": "archive_room",
-      "mood": "tense",
-      "particles": "dust",
-      "speaker": "torrik",
-      "speakerName": "Torrik",
-      "expression": "determined",
-      "characters": [
-        { "id": "ilvar", "expression": "neutral", "position": "left", "active": false },
-        { "id": "torrik", "expression": "determined", "position": "right", "active": true }
-      ],
-      "text": "Ilvar buttons his long coat and waits beside the brass lamp, measuring every word.",
-      "choices": [
-        {
-          "label": "Lay your full field notebook open beside his master archive",
-          "next": "c3_ilvar_ally",
-          "setFlags": { "allied_ilvar": true },
-          "addScore": { "guild_standing": 1 }
-        },
-        {
-          "label": "Ask only to view the Quartermaster's grain seals privately",
-          "next": "c3_ilvar_cautious",
-          "setFlags": { "allied_ilvar": false }
-        }
-      ]
-    },
-    "c3_ilvar_ally": {
-      "id": "c3_ilvar_ally",
-      "backdrop": "archive_room",
-      "mood": "warm",
-      "particles": "dust",
-      "speaker": "ilvar",
-      "speakerName": "Ilvar",
-      "expression": "surprised",
-      "shake": true,
-      "characters": [
-        { "id": "ilvar", "expression": "surprised", "position": "left", "active": true, "shake": true },
-        { "id": "torrik", "expression": "determined", "position": "right", "active": false }
-      ],
-      "text": "These wagon serials were struck out of the winter register last Tuesday! Someone diverted twelve shipments to private river barges.",
-      "next": "c3_hq_confront"
-    },
-    "c3_ilvar_cautious": {
-      "id": "c3_ilvar_cautious",
-      "backdrop": "archive_room",
-      "mood": "somber",
-      "particles": "dust",
-      "speaker": "ilvar",
-      "speakerName": "Ilvar",
+    "c3_orsen_push": {
+      "id": "c3_orsen_push",
+      "backdrop": "great_guild_headquarters",
+      "mood": "urgent",
+      "particles": "none",
+      "speaker": "orsen",
+      "speakerName": "Orsen",
       "expression": "angry",
       "characters": [
-        { "id": "ilvar", "expression": "angry", "position": "left", "active": true },
-        { "id": "torrik", "expression": "worried", "position": "right", "active": false }
+        { "id": "torrik", "expression": "determined", "position": "left", "active": false },
+        { "id": "myra", "expression": "smug", "position": "center", "active": false },
+        { "id": "orsen", "expression": "angry", "position": "right", "active": true }
       ],
-      "text": "Half-truths waste my ink. Still—look at line forty-eight. Twelve winter barges were booked under forged frontier stamps.",
-      "next": "c3_hq_confront"
+      "text": "Let them try locking oak against a blacksmith's shoulder. Besides, Myra's got a ward courier pass stamped for the upper gallery.",
+      "next": "c3_myra_gallery"
     },
-    "c3_hq_confront": {
-      "id": "c3_hq_confront",
+    "c3_myra_gallery": {
+      "id": "c3_myra_gallery",
       "backdrop": "great_guild_headquarters",
       "mood": "tense",
       "particles": "none",
-      "speaker": "fennick",
-      "speakerName": "Fennick",
+      "speaker": "myra",
+      "speakerName": "Myra",
       "expression": "smug",
       "characters": [
-        { "id": "fennick", "expression": "smug", "position": "left", "active": true },
-        { "id": "torrik", "expression": "determined", "position": "right", "active": false }
+        { "id": "torrik", "expression": "neutral", "position": "left", "active": false },
+        { "id": "myra", "expression": "smug", "position": "center", "active": true },
+        { "id": "orsen", "expression": "neutral", "position": "right", "active": false }
       ],
-      "text": "Leaving the vault so early, Torrik? I trust Archivist Ilvar reminded you that emergency requisitions are sealed by council privilege.",
-      "next": "c3_hq_torrik"
+      "text": "In and out before the bailiffs blink. Remember—the elders haven't taken their seats yet, so we get five precious minutes inside the chamber.",
+      "next": "c3_chamber_inspect"
     },
-    "c3_hq_torrik": {
-      "id": "c3_hq_torrik",
-      "backdrop": "great_guild_headquarters",
+    "c3_chamber_inspect": {
+      "id": "c3_chamber_inspect",
+      "backdrop": "council_chamber",
+      "mood": "tense",
+      "particles": "none",
+      "speaker": "torrik",
+      "speakerName": "Torrik",
+      "expression": "determined",
+      "characters": [
+        { "id": "torrik", "expression": "determined", "position": "left", "active": true },
+        { "id": "myra", "expression": "neutral", "position": "center", "active": false },
+        { "id": "orsen", "expression": "determined", "position": "right", "active": false }
+      ],
+      "text": "Before the elders file in, click the chamber floor points to expose how the Quartermaster rigged today's session.",
+      "investigation": {
+        "prompt": "Search the Council Chamber (2 clues required)",
+        "requiredCount": 2,
+        "continueLabel": "Present the Audit to the Council",
+        "continueNext": "c3_check_trust",
+        "hotspots": [
+          {
+            "id": "hs_votebox",
+            "label": "Sealed Vote Coffer",
+            "x": 0.48,
+            "y": 0.66,
+            "speaker": "torrik",
+            "speakerName": "Torrik",
+            "expression": "surprised",
+            "text": "The requisition decree is already inked and wax-stamped with today's noon hour—three hours BEFORE the council is even seated!",
+            "setFlags": { "found_prefilled_box": true },
+            "addScore": { "guild_standing": 1 }
+          },
+          {
+            "id": "hs_brazier",
+            "label": "Hearth Brazier Ash",
+            "x": 0.22,
+            "y": 0.44,
+            "speaker": "orsen",
+            "speakerName": "Orsen",
+            "expression": "angry",
+            "text": "Half-charred slate invoices! Someone tossed the original anthracite coal receipts into the chamber brazier this morning.",
+            "setFlags": { "found_burnt_invoice": true },
+            "addScore": { "guild_standing": 1 }
+          },
+          {
+            "id": "hs_cord",
+            "label": "Gallery Signal Cord",
+            "x": 0.80,
+            "y": 0.48,
+            "speaker": "myra",
+            "speakerName": "Myra",
+            "expression": "determined",
+            "text": "A courier bell-wire running straight out the side window toward Pier 4—ready to signal the barges the moment the gavel drops.",
+            "addScore": { "guild_standing": 1 }
+          }
+        ]
+      }
+    },
+    "c3_check_trust": {
+      "id": "c3_check_trust",
+      "backdrop": "council_chamber",
       "mood": "urgent",
       "particles": "none",
       "speaker": "torrik",
       "speakerName": "Torrik",
-      "expression": "angry",
+      "expression": "determined",
       "characters": [
-        { "id": "fennick", "expression": "surprised", "position": "left", "active": false },
-        { "id": "torrik", "expression": "angry", "position": "right", "active": true }
+        { "id": "torrik", "expression": "determined", "position": "left", "active": true },
+        { "id": "myra", "expression": "determined", "position": "center", "active": false },
+        { "id": "orsen", "expression": "determined", "position": "right", "active": false }
       ],
-      "text": "Not when the river barges carry grain stamped for freezing soldiers. The Council convenes at noon—and every line of my notebook will be read aloud.",
+      "text": "The gallery doors swing wide and the Quartermaster's clerk tries to wave us out—until we step straight onto the audit dais.",
+      "conditionFlag": {
+        "flag": "trust_orsen",
+        "equals": true,
+        "fallbackNext": "c3_present_cautious"
+      },
+      "next": "c3_present_trusted"
+    },
+    "c3_present_trusted": {
+      "id": "c3_present_trusted",
+      "backdrop": "council_chamber",
+      "mood": "warm",
+      "particles": "none",
+      "speaker": "orsen",
+      "speakerName": "Orsen",
+      "expression": "determined",
+      "shake": true,
+      "characters": [
+        { "id": "torrik", "expression": "determined", "position": "left", "active": false },
+        { "id": "myra", "expression": "smug", "position": "center", "active": false },
+        { "id": "orsen", "expression": "determined", "position": "right", "active": true, "shake": true }
+      ],
+      "text": "Look at this forged axle and my hammer-stamped tally! Every guild elder in this room sees how five iron carts vanished between gate and pier!",
+      "next": "c3_check_witness"
+    },
+    "c3_present_cautious": {
+      "id": "c3_present_cautious",
+      "backdrop": "council_chamber",
+      "mood": "tense",
+      "particles": "none",
+      "speaker": "torrik",
+      "speakerName": "Torrik",
+      "expression": "determined",
+      "characters": [
+        { "id": "torrik", "expression": "determined", "position": "left", "active": true },
+        { "id": "myra", "expression": "determined", "position": "center", "active": false },
+        { "id": "orsen", "expression": "tired", "position": "right", "active": false }
+      ],
+      "text": "My protocol ledger may lack Orsen's forge seal, yet the scraped wax and river-clay manifest still silence every murmur across the benches.",
+      "next": "c3_check_witness"
+    },
+    "c3_check_witness": {
+      "id": "c3_check_witness",
+      "backdrop": "council_chamber",
+      "mood": "tense",
+      "particles": "none",
+      "speaker": "myra",
+      "speakerName": "Myra",
+      "expression": "determined",
+      "characters": [
+        { "id": "torrik", "expression": "determined", "position": "left", "active": false },
+        { "id": "myra", "expression": "determined", "position": "center", "active": true },
+        { "id": "orsen", "expression": "neutral", "position": "right", "active": false }
+      ],
+      "text": "Wait for the final nail in the Quartermaster's defense...",
+      "conditionFlag": {
+        "flag": "spared_witness",
+        "equals": true,
+        "fallbackNext": "c3_evidence_seized"
+      },
+      "next": "c3_evidence_witness"
+    },
+    "c3_evidence_witness": {
+      "id": "c3_evidence_witness",
+      "backdrop": "council_chamber",
+      "mood": "warm",
+      "particles": "none",
+      "speaker": "myra",
+      "speakerName": "Myra",
+      "expression": "smug",
+      "characters": [
+        { "id": "torrik", "expression": "determined", "position": "left", "active": false },
+        { "id": "myra", "expression": "smug", "position": "center", "active": true },
+        { "id": "orsen", "expression": "determined", "position": "right", "active": false }
+      ],
+      "text": "The lockhouse witness you spared steps into the chamber with sworn testimony! Even the senior elders rise to halt the Pier 4 barges.",
+      "next": "c3_final_choice"
+    },
+    "c3_evidence_seized": {
+      "id": "c3_evidence_seized",
+      "backdrop": "council_chamber",
+      "mood": "urgent",
+      "particles": "none",
+      "speaker": "orsen",
+      "speakerName": "Orsen",
+      "expression": "determined",
+      "characters": [
+        { "id": "torrik", "expression": "determined", "position": "left", "active": false },
+        { "id": "myra", "expression": "determined", "position": "center", "active": false },
+        { "id": "orsen", "expression": "determined", "position": "right", "active": true }
+      ],
+      "text": "We slam the seized barge toll book straight onto the dais. Black ink doesn't lie—the bailiffs rush to lock the river sluices!",
+      "next": "c3_final_choice"
+    },
+    "c3_final_choice": {
+      "id": "c3_final_choice",
+      "backdrop": "council_chamber",
+      "mood": "calm",
+      "particles": "none",
+      "speaker": "torrik",
+      "speakerName": "Torrik",
+      "expression": "determined",
+      "characters": [
+        { "id": "torrik", "expression": "determined", "position": "left", "active": true },
+        { "id": "myra", "expression": "neutral", "position": "center", "active": false },
+        { "id": "orsen", "expression": "neutral", "position": "right", "active": false }
+      ],
+      "text": "The Senior Council hands me the blank charter seal to settle the seized iron and grain. What decree do we forge for the Outer Ward?",
+      "choices": [
+        {
+          "label": "Proclaim the Open Ledger Charter: post every guild tally publicly every week",
+          "next": "c3_epilogue_charter",
+          "endingId": "open_charter",
+          "addScore": { "guild_standing": 3 }
+        },
+        {
+          "label": "Send the barges straight to Orsen's forge and the dry farmland mills first",
+          "next": "c3_epilogue_winter_road",
+          "endingId": "winter_road",
+          "addScore": { "guild_standing": 2 }
+        },
+        {
+          "label": "Enforce a Silent Reckoning: full restitution under ward oversight and witness immunity",
+          "next": "c3_epilogue_reckoning",
+          "endingId": "silent_reckoning",
+          "addScore": { "guild_standing": 2 }
+        }
+      ]
+    },
+    "c3_epilogue_charter": {
+      "id": "c3_epilogue_charter",
+      "backdrop": "small_guild_hall",
+      "mood": "warm",
+      "particles": "dust",
+      "speaker": "torrik",
+      "speakerName": "Torrik",
+      "expression": "determined",
+      "characters": [
+        { "id": "torrik", "expression": "determined", "position": "left", "active": true },
+        { "id": "myra", "expression": "smug", "position": "center", "active": false },
+        { "id": "orsen", "expression": "neutral", "position": "right", "active": false }
+      ],
+      "text": "Back in the Small Guild Hall, our chalk board hangs outside in daylight where every smith, farmer, and courier can read every ton.",
+      "next": "c3_epilogue_trio_close"
+    },
+    "c3_epilogue_winter_road": {
+      "id": "c3_epilogue_winter_road",
+      "backdrop": "small_guild_hall",
+      "mood": "warm",
+      "particles": "dust",
+      "speaker": "orsen",
+      "speakerName": "Orsen",
+      "expression": "determined",
+      "characters": [
+        { "id": "torrik", "expression": "neutral", "position": "left", "active": false },
+        { "id": "myra", "expression": "determined", "position": "center", "active": false },
+        { "id": "orsen", "expression": "determined", "position": "right", "active": true }
+      ],
+      "text": "The forge hearth is roaring again, five coal wagons are unloading down the street, and the valley windmills are turning with winter grain.",
+      "next": "c3_epilogue_trio_close"
+    },
+    "c3_epilogue_reckoning": {
+      "id": "c3_epilogue_reckoning",
+      "backdrop": "small_guild_hall",
+      "mood": "calm",
+      "particles": "dust",
+      "speaker": "myra",
+      "speakerName": "Myra",
+      "expression": "determined",
+      "characters": [
+        { "id": "torrik", "expression": "determined", "position": "left", "active": false },
+        { "id": "myra", "expression": "determined", "position": "center", "active": true },
+        { "id": "orsen", "expression": "neutral", "position": "right", "active": false }
+      ],
+      "text": "Two crooked factors are in irons, our coerced lockhouse clerk keeps his winter rations, and every Pier 4 barge answers to honest ink.",
+      "next": "c3_epilogue_trio_close"
+    },
+    "c3_epilogue_trio_close": {
+      "id": "c3_epilogue_trio_close",
+      "backdrop": "small_guild_hall",
+      "mood": "warm",
+      "particles": "dust",
+      "speaker": "orsen",
+      "speakerName": "Orsen",
+      "expression": "neutral",
+      "characters": [
+        { "id": "torrik", "expression": "determined", "position": "left", "active": false },
+        { "id": "myra", "expression": "smug", "position": "center", "active": false },
+        { "id": "orsen", "expression": "neutral", "position": "right", "active": true }
+      ],
+      "text": "Not bad for a cautious clerk, a muddy road scout, and a grumpy smith. Keep that notebook handy, Torrik—winter's only half done.",
       "endChapter": true,
       "next": null
     }

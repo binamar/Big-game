@@ -1,9 +1,9 @@
 {
   "id": "chapter_02",
   "number": 2,
-  "title": "The Dry Road",
-  "subtitle": "Borderlands & Watchfires",
-  "summary": "Torrik and Myra cross drought-stricken farmland and a ruined village to reach Rowan at the army camp.",
+  "title": "Mud Tracks & Missing Barges",
+  "subtitle": "The Dry Valley Trail",
+  "summary": "Follow the diverted wagon ruts past parched farmlands, inspect physical trail evidence, and choose your tactical approach at the river lockhouse.",
   "startNode": "c2_start",
   "nextChapterId": "chapter_03",
   "nodes": {
@@ -16,231 +16,350 @@
       "speakerName": "Myra",
       "expression": "tired",
       "characters": [
-        { "id": "myra", "expression": "tired", "position": "left", "active": true },
-        { "id": "torrik", "expression": "worried", "position": "right", "active": false }
+        { "id": "torrik", "expression": "tired", "position": "left", "active": false },
+        { "id": "myra", "expression": "tired", "position": "center", "active": true },
+        { "id": "orsen", "expression": "neutral", "position": "right", "active": false }
       ],
-      "text": "Look at the mill sails—still for three months. Every irrigation ditch from here to the foothills is cracked clay.",
-      "next": "c2_farmland_2"
+      "text": "Storm broke west of the ridge, leaving the valley dry as bone dust. Every ditch along these fields should be carrying spring melt—and look at it.",
+      "next": "c2_torrik_boots"
     },
-    "c2_farmland_2": {
-      "id": "c2_farmland_2",
+    "c2_torrik_boots": {
+      "id": "c2_torrik_boots",
       "backdrop": "dry_farmland",
       "mood": "bleak",
       "particles": "dust",
       "speaker": "torrik",
       "speakerName": "Torrik",
-      "expression": "sad",
-      "characters": [
-        { "id": "myra", "expression": "tired", "position": "left", "active": false },
-        { "id": "torrik", "expression": "sad", "position": "right", "active": true }
-      ],
-      "text": "Yet Fennick's ledger listed a full harvest tithe from this valley. Either someone forged the ink or stripped the granaries bare.",
-      "next": "c2_village_arrive"
-    },
-    "c2_village_arrive": {
-      "id": "c2_village_arrive",
-      "backdrop": "ruined_village",
-      "mood": "somber",
-      "particles": "dust",
-      "speaker": "selva",
-      "speakerName": "Selva",
-      "expression": "sad",
-      "characters": [
-        { "id": "selva", "expression": "sad", "position": "left", "active": true },
-        { "id": "torrik", "expression": "worried", "position": "right", "active": false }
-      ],
-      "text": "Mind the loose roof slate. What wasn't burned in last winter's raid was hauled off by tax wagons wearing guild brass.",
-      "next": "c2_selva_2"
-    },
-    "c2_selva_2": {
-      "id": "c2_selva_2",
-      "backdrop": "ruined_village",
-      "mood": "somber",
-      "particles": "dust",
-      "speaker": "selva",
-      "speakerName": "Selva",
-      "expression": "determined",
-      "characters": [
-        { "id": "selva", "expression": "determined", "position": "left", "active": true },
-        { "id": "torrik", "expression": "neutral", "position": "right", "active": false }
-      ],
-      "text": "My brother Rowan is up at the East Ridge camp. If you're carrying a real guild pen, take our village count back to the council.",
-      "next": "c2_selva_choice"
-    },
-    "c2_selva_choice": {
-      "id": "c2_selva_choice",
-      "backdrop": "ruined_village",
-      "mood": "somber",
-      "particles": "dust",
-      "speaker": "torrik",
-      "speakerName": "Torrik",
       "expression": "worried",
       "characters": [
-        { "id": "selva", "expression": "worried", "position": "left", "active": false },
-        { "id": "torrik", "expression": "worried", "position": "right", "active": true }
+        { "id": "torrik", "expression": "worried", "position": "left", "active": true },
+        { "id": "myra", "expression": "smug", "position": "center", "active": false },
+        { "id": "orsen", "expression": "neutral", "position": "right", "active": false }
       ],
-      "text": "Selva holds out a folded petition signed in charcoal by forty displaced households.",
-      "choices": [
-        {
-          "label": "Copy every household name into the official audit ledger",
-          "next": "c2_selva_pledge",
-          "setFlags": { "spoke_for_selva": true },
-          "addScore": { "guild_standing": 1 }
-        },
-        {
-          "label": "Promise to mention the damage verbally once the audit ends",
-          "next": "c2_selva_defer",
-          "setFlags": { "spoke_for_selva": false }
-        }
-      ]
+      "text": "My guild ledger lists forty sacks of seed barley earmarked for this windmill parish. Instead the mill sails haven't turned in months.",
+      "next": "c2_orsen_observation"
     },
-    "c2_selva_pledge": {
-      "id": "c2_selva_pledge",
-      "backdrop": "ruined_village",
-      "mood": "warm",
+    "c2_orsen_observation": {
+      "id": "c2_orsen_observation",
+      "backdrop": "dry_farmland",
+      "mood": "tense",
       "particles": "dust",
-      "speaker": "selva",
-      "speakerName": "Selva",
+      "speaker": "orsen",
+      "speakerName": "Orsen",
       "expression": "determined",
       "characters": [
-        { "id": "selva", "expression": "determined", "position": "left", "active": true },
-        { "id": "torrik", "expression": "determined", "position": "right", "active": false }
+        { "id": "torrik", "expression": "neutral", "position": "left", "active": false },
+        { "id": "myra", "expression": "determined", "position": "center", "active": false },
+        { "id": "orsen", "expression": "determined", "position": "right", "active": true }
       ],
-      "text": "Thank you. Tell Rowan I'm holding the lower barn shelter together until relief carts return.",
-      "next": "c2_mountain_nova"
+      "text": "And yet heavy iron-bound carts paused right beside that dry ditch at midnight. Spread out—see what the caravan left behind in the dust.",
+      "next": "c2_farmland_inspect"
     },
-    "c2_selva_defer": {
-      "id": "c2_selva_defer",
-      "backdrop": "ruined_village",
-      "mood": "somber",
-      "particles": "dust",
-      "speaker": "selva",
-      "speakerName": "Selva",
-      "expression": "tired",
-      "characters": [
-        { "id": "selva", "expression": "tired", "position": "left", "active": true },
-        { "id": "torrik", "expression": "worried", "position": "right", "active": false }
-      ],
-      "text": "Verbal promises blow away fast on this ridge. See what Rowan says when you look at his shield.",
-      "next": "c2_mountain_nova"
-    },
-    "c2_mountain_nova": {
-      "id": "c2_mountain_nova",
-      "backdrop": "mountain_road",
-      "mood": "calm",
-      "particles": "dust",
-      "speaker": "nova",
-      "speakerName": "Nova",
-      "expression": "neutral",
-      "characters": [
-        { "id": "nova", "expression": "neutral", "position": "left", "active": true },
-        { "id": "myra", "expression": "surprised", "position": "right", "active": false }
-      ],
-      "text": "Slow your mules before the bend. Great Guild outriders checked the toll gate an hour ago—without cargo.",
-      "next": "c2_mountain_myra"
-    },
-    "c2_mountain_myra": {
-      "id": "c2_mountain_myra",
-      "backdrop": "mountain_road",
-      "mood": "tense",
+    "c2_farmland_inspect": {
+      "id": "c2_farmland_inspect",
+      "backdrop": "dry_farmland",
+      "mood": "bleak",
       "particles": "dust",
       "speaker": "myra",
       "speakerName": "Myra",
       "expression": "determined",
       "characters": [
-        { "id": "nova", "expression": "neutral", "position": "left", "active": false },
-        { "id": "myra", "expression": "determined", "position": "right", "active": true }
+        { "id": "torrik", "expression": "determined", "position": "left", "active": false },
+        { "id": "myra", "expression": "determined", "position": "center", "active": true },
+        { "id": "orsen", "expression": "neutral", "position": "right", "active": false }
       ],
-      "text": "Nova never speaks without counting twice. Wait—if the outriders rode empty, where did the grain wagons turn off?",
-      "next": "c2_camp_rowan"
+      "text": "Inspect the abandoned farmland clues: the silent windmill, the fence-line sacks, and the deep wagon furrow.",
+      "investigation": {
+        "prompt": "Search the Dry Farmland (2 clues required)",
+        "requiredCount": 2,
+        "continueLabel": "Choose Route to the Lockhouse",
+        "continueNext": "c2_road_choice",
+        "hotspots": [
+          {
+            "id": "hs_windmill",
+            "label": "Windmill Gearhouse",
+            "x": 0.74,
+            "y": 0.38,
+            "speaker": "myra",
+            "speakerName": "Myra",
+            "expression": "surprised",
+            "text": "Caught on a nail inside the mill door—a crimson manifest ribbon stamped with River Pier 4! That's Great Guild Quartermaster silk.",
+            "setFlags": { "found_windmill_ribbon": true },
+            "addScore": { "guild_standing": 1 }
+          },
+          {
+            "id": "hs_sacks",
+            "label": "Ditchside Grain Sacks",
+            "x": 0.24,
+            "y": 0.64,
+            "speaker": "orsen",
+            "speakerName": "Orsen",
+            "expression": "angry",
+            "text": "Look inside—chaff layered over pig-iron ingots! They masked ward iron inside barley sacks so gate guards wouldn't weigh the axles.",
+            "setFlags": { "found_lime_sacks": true },
+            "addScore": { "guild_standing": 1 }
+          },
+          {
+            "id": "hs_ruts",
+            "label": "Deep Axle Furrow",
+            "x": 0.48,
+            "y": 0.72,
+            "speaker": "torrik",
+            "speakerName": "Torrik",
+            "expression": "determined",
+            "text": "Five distinct wheel gauges, heading straight toward the lower river lockhouse alleys. They're loading barges tonight.",
+            "addScore": { "guild_standing": 1 }
+          }
+        ]
+      }
     },
-    "c2_camp_rowan": {
-      "id": "c2_camp_rowan",
-      "backdrop": "army_camp_dusk",
+    "c2_road_choice": {
+      "id": "c2_road_choice",
+      "backdrop": "dry_farmland",
       "mood": "urgent",
-      "particles": "embers",
-      "speaker": "rowan",
-      "speakerName": "Rowan",
-      "expression": "tired",
-      "characters": [
-        { "id": "rowan", "expression": "tired", "position": "left", "active": true },
-        { "id": "torrik", "expression": "surprised", "position": "right", "active": false }
-      ],
-      "text": "You're the clerk from Haldor's hall? Look at my shield—split since frostfall—and look at our empty ration crates.",
-      "next": "c2_rowan_2"
-    },
-    "c2_rowan_2": {
-      "id": "c2_rowan_2",
-      "backdrop": "army_camp_dusk",
-      "mood": "urgent",
-      "particles": "embers",
-      "speaker": "rowan",
-      "speakerName": "Rowan",
-      "expression": "angry",
-      "shake": true,
-      "characters": [
-        { "id": "rowan", "expression": "angry", "position": "left", "active": true, "shake": true },
-        { "id": "torrik", "expression": "worried", "position": "right", "active": false }
-      ],
-      "text": "Every requisition scroll stamped by Quartermaster Fennick says we received forty sacks a week. We've eaten watered oats for twenty days.",
-      "next": "c2_rowan_choice"
-    },
-    "c2_rowan_choice": {
-      "id": "c2_rowan_choice",
-      "backdrop": "army_camp_dusk",
-      "mood": "tense",
-      "particles": "embers",
+      "particles": "dust",
       "speaker": "torrik",
       "speakerName": "Torrik",
       "expression": "determined",
       "characters": [
-        { "id": "rowan", "expression": "tired", "position": "left", "active": false },
-        { "id": "torrik", "expression": "determined", "position": "right", "active": true }
+        { "id": "torrik", "expression": "determined", "position": "left", "active": true },
+        { "id": "myra", "expression": "determined", "position": "center", "active": false },
+        { "id": "orsen", "expression": "determined", "position": "right", "active": false }
       ],
-      "text": "Rowan pulls a bundle of unsigned wax-broken delivery stubs from behind his pierced shield.",
+      "text": "Dusk is falling fast over the river bend. Two paths lead into the lower lockhouse quarter—how do we strike?",
       "choices": [
         {
-          "label": "Seal the camp receipts inside your notebook as primary proof",
-          "next": "c2_end_proof",
-          "setFlags": { "saved_receipts": true },
+          "label": "Road A: Slip down the brick night alley to catch the barge loaders red-handed",
+          "next": "c2_road_alley_1",
+          "setFlags": { "valley_road_alley": true },
           "addScore": { "guild_standing": 1 }
         },
         {
-          "label": "Copy only the totals so Rowan keeps the originals at camp",
-          "next": "c2_end_totals",
-          "setFlags": { "saved_receipts": false }
+          "label": "Road B: Corner the lockhouse toll-shed clerk directly using our audit proof",
+          "next": "c2_road_toll_1",
+          "setFlags": { "valley_road_alley": false },
+          "addScore": { "guild_standing": 1 }
         }
       ]
     },
-    "c2_end_proof": {
-      "id": "c2_end_proof",
-      "backdrop": "army_camp_dusk",
-      "mood": "warm",
-      "particles": "embers",
-      "speaker": "rowan",
-      "speakerName": "Rowan",
+    "c2_road_alley_1": {
+      "id": "c2_road_alley_1",
+      "backdrop": "night_alley",
+      "mood": "tense",
+      "particles": "none",
+      "speaker": "myra",
+      "speakerName": "Myra",
       "expression": "determined",
       "characters": [
-        { "id": "rowan", "expression": "determined", "position": "left", "active": true },
-        { "id": "torrik", "expression": "determined", "position": "right", "active": false }
+        { "id": "myra", "expression": "determined", "position": "left", "active": true },
+        { "id": "torrik", "expression": "worried", "position": "center", "active": false },
+        { "id": "orsen", "expression": "angry", "position": "right", "active": false }
       ],
-      "text": "Guard those stubs with your life, Torrik. Tell Selva I'll march down to the council steps myself if the numbers don't hold.",
-      "endChapter": true,
-      "next": null
+      "text": "Keep beneath the shuttered eaves. Beneath that swinging iron lantern—three dock hands hauling iron crates labeled 'Winter Barley.'",
+      "next": "c2_road_alley_orsen"
     },
-    "c2_end_totals": {
-      "id": "c2_end_totals",
-      "backdrop": "army_camp_dusk",
+    "c2_road_alley_orsen": {
+      "id": "c2_road_alley_orsen",
+      "backdrop": "night_alley",
+      "mood": "urgent",
+      "particles": "none",
+      "speaker": "orsen",
+      "speakerName": "Orsen",
+      "expression": "angry",
+      "characters": [
+        { "id": "myra", "expression": "worried", "position": "left", "active": false },
+        { "id": "torrik", "expression": "determined", "position": "center", "active": false },
+        { "id": "orsen", "expression": "angry", "position": "right", "active": true }
+      ],
+      "text": "Say the word, clerk, and I'll drop that pry-bar across the gangplank—or we pin down their hull numbers from the shadow.",
+      "next": "c2_alley_subchoice"
+    },
+    "c2_alley_subchoice": {
+      "id": "c2_alley_subchoice",
+      "backdrop": "night_alley",
+      "mood": "urgent",
+      "particles": "none",
+      "speaker": "torrik",
+      "speakerName": "Torrik",
+      "expression": "determined",
+      "characters": [
+        { "id": "myra", "expression": "determined", "position": "left", "active": false },
+        { "id": "torrik", "expression": "determined", "position": "center", "active": true },
+        { "id": "orsen", "expression": "determined", "position": "right", "active": false }
+      ],
+      "text": "The barge lines are taut and ready to cast off.",
+      "choices": [
+        {
+          "label": "Step into the lantern light with Orsen and halt the loading dock",
+          "next": "c2_alley_confront",
+          "setFlags": { "seized_manifest": true, "spared_witness": false },
+          "addScore": { "guild_standing": 1 }
+        },
+        {
+          "label": "Copy every barge hull serial and bribe note silently before moving",
+          "next": "c2_alley_shadow",
+          "setFlags": { "spared_witness": true, "seized_manifest": false },
+          "addScore": { "guild_standing": 2 }
+        }
+      ]
+    },
+    "c2_alley_confront": {
+      "id": "c2_alley_confront",
+      "backdrop": "night_alley",
+      "mood": "urgent",
+      "particles": "none",
+      "speaker": "orsen",
+      "speakerName": "Orsen",
+      "expression": "angry",
+      "shake": true,
+      "characters": [
+        { "id": "myra", "expression": "determined", "position": "left", "active": false },
+        { "id": "torrik", "expression": "determined", "position": "center", "active": false },
+        { "id": "orsen", "expression": "angry", "position": "right", "active": true, "shake": true }
+      ],
+      "text": "Drop those ropes! Every crate on that plank belongs to the Outer Ward forge—and the foreman drops the manifest ledger on the cobblestones as his crew bolts!",
+      "next": "c2_reunion_proof"
+    },
+    "c2_alley_shadow": {
+      "id": "c2_alley_shadow",
+      "backdrop": "night_alley",
+      "mood": "calm",
+      "particles": "none",
+      "speaker": "torrik",
+      "speakerName": "Torrik",
+      "expression": "determined",
+      "characters": [
+        { "id": "myra", "expression": "smug", "position": "left", "active": false },
+        { "id": "torrik", "expression": "determined", "position": "center", "active": true },
+        { "id": "orsen", "expression": "neutral", "position": "right", "active": false }
+      ],
+      "text": "Got all four barge registries—and the dock hand just handed Myra his coerced slip in exchange for keeping his name clear of the riot.",
+      "next": "c2_reunion_proof"
+    },
+    "c2_road_toll_1": {
+      "id": "c2_road_toll_1",
+      "backdrop": "night_alley",
+      "mood": "tense",
+      "particles": "none",
+      "speaker": "torrik",
+      "speakerName": "Torrik",
+      "expression": "determined",
+      "characters": [
+        { "id": "torrik", "expression": "determined", "position": "left", "active": true },
+        { "id": "orsen", "expression": "determined", "position": "center", "active": false },
+        { "id": "myra", "expression": "neutral", "position": "right", "active": false }
+      ],
+      "text": "Inside the lockhouse alley, the night clerk nearly drops his inkpot when Myra bars the back shutter and Orsen blocks the doorway.",
+      "next": "c2_toll_clerk_plea"
+    },
+    "c2_toll_clerk_plea": {
+      "id": "c2_toll_clerk_plea",
+      "backdrop": "night_alley",
       "mood": "somber",
-      "particles": "embers",
-      "speaker": "rowan",
-      "speakerName": "Rowan",
+      "particles": "none",
+      "speaker": "myra",
+      "speakerName": "Myra",
       "expression": "worried",
       "characters": [
-        { "id": "rowan", "expression": "worried", "position": "left", "active": true },
-        { "id": "torrik", "expression": "determined", "position": "right", "active": false }
+        { "id": "torrik", "expression": "neutral", "position": "left", "active": false },
+        { "id": "orsen", "expression": "tired", "position": "center", "active": false },
+        { "id": "myra", "expression": "worried", "position": "right", "active": true }
       ],
-      "text": "Hurry back before the mountain pass shuts. Without matching vault ledgers in the city, no one will believe a soldier's word.",
+      "text": "He's shaking like a dry leaf, Torrik. Says Quartermaster enforcers threatened his family's winter rations if he logged the barges.",
+      "next": "c2_toll_choice"
+    },
+    "c2_toll_choice": {
+      "id": "c2_toll_choice",
+      "backdrop": "night_alley",
+      "mood": "tense",
+      "particles": "none",
+      "speaker": "orsen",
+      "speakerName": "Orsen",
+      "expression": "determined",
+      "characters": [
+        { "id": "torrik", "expression": "determined", "position": "left", "active": false },
+        { "id": "orsen", "expression": "determined", "position": "center", "active": true },
+        { "id": "myra", "expression": "worried", "position": "right", "active": false }
+      ],
+      "text": "Your call, clerk. Either offer the poor fellow sanctuary in exchange for sworn testimony, or confiscate his lockhouse book outright.",
+      "choices": [
+        {
+          "label": "Promise the clerk Outer Ward shelter if he testifies at dawn",
+          "next": "c2_toll_spared",
+          "setFlags": { "spared_witness": true, "seized_manifest": false },
+          "addScore": { "guild_standing": 2 }
+        },
+        {
+          "label": "Seize the stamped lockhouse manifest under audit writ immediately",
+          "next": "c2_toll_seized",
+          "setFlags": { "seized_manifest": true, "spared_witness": false },
+          "addScore": { "guild_standing": 1 }
+        }
+      ]
+    },
+    "c2_toll_spared": {
+      "id": "c2_toll_spared",
+      "backdrop": "night_alley",
+      "mood": "warm",
+      "particles": "none",
+      "speaker": "torrik",
+      "speakerName": "Torrik",
+      "expression": "determined",
+      "characters": [
+        { "id": "torrik", "expression": "determined", "position": "left", "active": true },
+        { "id": "orsen", "expression": "neutral", "position": "center", "active": false },
+        { "id": "myra", "expression": "determined", "position": "right", "active": false }
+      ],
+      "text": "He pulls the secret duplicate manifest from a loose brick beneath the stove—signed personally by the Quartermaster's seal.",
+      "next": "c2_reunion_proof"
+    },
+    "c2_toll_seized": {
+      "id": "c2_toll_seized",
+      "backdrop": "night_alley",
+      "mood": "tense",
+      "particles": "none",
+      "speaker": "orsen",
+      "speakerName": "Orsen",
+      "expression": "determined",
+      "characters": [
+        { "id": "torrik", "expression": "determined", "position": "left", "active": false },
+        { "id": "orsen", "expression": "determined", "position": "center", "active": true },
+        { "id": "myra", "expression": "neutral", "position": "right", "active": false }
+      ],
+      "text": "Clean, fast, no loose ends. We've got the iron-bound toll register in hand—every missing barge weight inked in black.",
+      "next": "c2_reunion_proof"
+    },
+    "c2_reunion_proof": {
+      "id": "c2_reunion_proof",
+      "backdrop": "rainy_street",
+      "mood": "urgent",
+      "particles": "rain",
+      "speaker": "myra",
+      "speakerName": "Myra",
+      "expression": "surprised",
+      "shake": true,
+      "characters": [
+        { "id": "torrik", "expression": "determined", "position": "left", "active": false },
+        { "id": "myra", "expression": "surprised", "position": "center", "active": true, "shake": true },
+        { "id": "orsen", "expression": "determined", "position": "right", "active": false }
+      ],
+      "text": "Listen—the High Quarter bell! They called an early dawn council session to ratify the emergency requisition before the wards wake up!",
+      "next": "c2_end"
+    },
+    "c2_end": {
+      "id": "c2_end",
+      "backdrop": "rainy_street",
+      "mood": "urgent",
+      "particles": "rain",
+      "speaker": "orsen",
+      "speakerName": "Orsen",
+      "expression": "determined",
+      "characters": [
+        { "id": "torrik", "expression": "determined", "position": "left", "active": false },
+        { "id": "myra", "expression": "determined", "position": "center", "active": false },
+        { "id": "orsen", "expression": "determined", "position": "right", "active": true }
+      ],
+      "text": "Then we march straight up the marble steps with mud on our boots and iron in our hands. End of Chapter 2—prepare for the Council.",
       "endChapter": true,
       "next": null
     }

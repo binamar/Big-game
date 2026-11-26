@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/characters/torrik_character.gd" id="1_torrik"]
+
+[node name="TorrikCharacter" type="Control"]
+custom_minimum_size = Vector2(260, 360)
+layout_mode = 3
+anchors_preset = 0
+mouse_filter = 2
+script = ExtResource("1_torrik")

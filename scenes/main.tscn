@@ -1,8 +1,7 @@
-[gd_scene load_steps=4 format=3]
+[gd_scene load_steps=3 format=3]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_main"]
 [ext_resource type="PackedScene" path="res://scenes/backdrop_renderer.tscn" id="2_backdrop"]
-[ext_resource type="PackedScene" path="res://scenes/character_portrait.tscn" id="3_portrait"]
 
 [node name="Main" type="Control"]
 layout_mode = 3
@@ -16,43 +15,6 @@ script = ExtResource("1_main")
 [node name="Backdrop" parent="." instance=ExtResource("2_backdrop")]
 layout_mode = 1
 
-[node name="StagePreview" type="Control" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-
-[node name="HeroLeft" parent="StagePreview" instance=ExtResource("3_portrait")]
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -560.0
-offset_top = -410.0
-offset_right = -280.0
-offset_bottom = -20.0
-grow_horizontal = 0
-grow_vertical = 0
-
-[node name="HeroRight" parent="StagePreview" instance=ExtResource("3_portrait")]
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -300.0
-offset_top = -420.0
-offset_right = -20.0
-offset_bottom = -20.0
-grow_horizontal = 0
-grow_vertical = 0
-
 [node name="Scrim" type="ColorRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
@@ -61,64 +23,95 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-color = Color(0.06, 0.08, 0.11, 0.62)
+color = Color(0.035, 0.047, 0.067, 0.56)
 
-[node name="Margin" type="MarginContainer" parent="."]
+[node name="RightStage" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 610.0
+offset_top = 80.0
+offset_right = -24.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="TrioRow" type="HBoxContainer" parent="RightStage"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 36
-theme_override_constants/margin_top = 28
-theme_override_constants/margin_right = 36
-theme_override_constants/margin_bottom = 28
+mouse_filter = 2
+theme_override_constants/separation = 8
+alignment = 1
 
-[node name="Layout" type="VBoxContainer" parent="Margin"]
-layout_mode = 2
-theme_override_constants/separation = 20
+[node name="LeftPanel" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 36.0
+offset_top = 32.0
+offset_right = 592.0
+offset_bottom = -32.0
+grow_vertical = 2
 
-[node name="TopBar" type="HBoxContainer" parent="Margin/Layout"]
+[node name="Margin" type="MarginContainer" parent="LeftPanel"]
 layout_mode = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 22
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 22
 
-[node name="TitleBlock" type="VBoxContainer" parent="Margin/Layout/TopBar"]
+[node name="VBox" type="VBoxContainer" parent="LeftPanel/Margin"]
 layout_mode = 2
-size_flags_horizontal = 3
+theme_override_constants/separation = 14
 
-[node name="GameTitle" type="Label" parent="Margin/Layout/TopBar/TitleBlock"]
+[node name="Kicker" type="Label" parent="LeftPanel/Margin/VBox"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.85, 0.61, 0.26, 1)
+theme_override_font_sizes/font_size = 13
+text = "Three-Chapter Visual Novel & Point-and-Click Mystery"
+
+[node name="GameTitle" type="Label" parent="LeftPanel/Margin/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.96, 0.94, 0.90, 1)
 theme_override_font_sizes/font_size = 34
 text = "The Ledger of Ash & Iron"
 
-[node name="Subtitle" type="Label" parent="Margin/Layout/TopBar/TitleBlock"]
+[node name="Premise" type="Label" parent="LeftPanel/Margin/VBox"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.68, 0.73, 0.80, 1)
 theme_override_font_sizes/font_size = 14
-text = "Ten-Chapter Procedural Visual Novel · Godot 4.7"
+text = "Uncover tampered guild seals, inspect physical clues on scene, and guide Torrik, Myra, and Orsen across three branching chapters."
+autowrap_mode = 3
 
-[node name="Actions" type="HBoxContainer" parent="Margin/Layout/TopBar"]
+[node name="ActionRow" type="HBoxContainer" parent="LeftPanel/Margin/VBox"]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="ContinueBtn" type="Button" parent="Margin/Layout/TopBar/Actions"]
+[node name="ContinueBtn" type="Button" parent="LeftPanel/Margin/VBox/ActionRow"]
 layout_mode = 2
-text = "Continue"
+text = "Continue Story"
 
-[node name="NewGameBtn" type="Button" parent="Margin/Layout/TopBar/Actions"]
+[node name="NewGameBtn" type="Button" parent="LeftPanel/Margin/VBox/ActionRow"]
 layout_mode = 2
-text = "Start Chapter 1"
+text = "Begin Chapter 1"
 
-[node name="StudioBtn" type="Button" parent="Margin/Layout/TopBar/Actions"]
+[node name="StudioBtn" type="Button" parent="LeftPanel/Margin/VBox/ActionRow"]
 layout_mode = 2
-text = "Portrait & Scene Stage"
+text = "Cast & Scene Stage"
 
-[node name="ChapterScroll" type="ScrollContainer" parent="Margin/Layout"]
+[node name="ChaptersHeading" type="Label" parent="LeftPanel/Margin/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.86, 0.88, 0.92, 1)
+theme_override_font_sizes/font_size = 15
+text = "Playable Chapters"
+
+[node name="ChapterList" type="VBoxContainer" parent="LeftPanel/Margin/VBox"]
 layout_mode = 2
 size_flags_vertical = 3
-
-[node name="ChapterGrid" type="GridContainer" parent="Margin/Layout/ChapterScroll"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/h_separation = 14
-theme_override_constants/v_separation = 14
-columns = 2
+theme_override_constants/separation = 10

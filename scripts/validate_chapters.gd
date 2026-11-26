@@ -1,6 +1,7 @@
 extends SceneTree
 
 const CHAPTERS_DIR := "res://data/chapters/"
+const EXPECTED_CHAPTERS := 3
 
 func _init() -> void:
 	var dir := DirAccess.open(CHAPTERS_DIR)
@@ -19,8 +20,8 @@ func _init() -> void:
 	dir.list_dir_end()
 	files.sort()
 
-	if files.is_empty():
-		push_error("No chapter JSON files found in " + CHAPTERS_DIR)
+	if files.size() != EXPECTED_CHAPTERS:
+		push_error("Expected exactly %d chapter JSON files in %s, found %d." % [EXPECTED_CHAPTERS, CHAPTERS_DIR, files.size()])
 		quit(1)
 		return
 
@@ -76,7 +77,7 @@ func _validate_chapter(chapter: Dictionary) -> PackedStringArray:
 			continue
 
 		var speaker := str(node.get("speaker", ""))
-		if speaker != "narrator" and not CharacterRegistry.CHARACTER_IDS.has(speaker):
+		if speaker != "narrator" and not CharacterCatalog.CHARACTER_IDS.has(speaker):
 			errors.append("Node '%s' has unknown speaker '%s'." % [node_id, speaker])
 
 		var expr := str(node.get("expression", ""))
@@ -99,7 +100,7 @@ func _validate_chapter(chapter: Dictionary) -> PackedStringArray:
 				continue
 			var sc_id := str(sc.get("id", ""))
 			var sc_expr := str(sc.get("expression", ""))
-			if not CharacterRegistry.CHARACTER_IDS.has(sc_id):
+			if not CharacterCatalog.CHARACTER_IDS.has(sc_id):
 				errors.append("Node '%s' stage character '%s' is unknown." % [node_id, sc_id])
 			if not ExpressionData.PRESET_IDS.has(sc_expr):
 				errors.append("Node '%s' stage character '%s' has unknown expression '%s'." % [node_id, sc_id, sc_expr])
@@ -114,15 +115,33 @@ func _validate_chapter(chapter: Dictionary) -> PackedStringArray:
 			if not nodes.has(fb):
 				errors.append("Node '%s' conditionFlag fallbackNext '%s' is missing." % [node_id, fb])
 
+		var inv = node.get("investigation", null)
+		if typeof(inv) == TYPE_DICTIONARY:
+			var cnext := str(inv.get("continueNext", ""))
+			if not nodes.has(cnext):
+				errors.append("Node '%s' investigation continueNext '%s' is missing." % [node_id, cnext])
+			var hotspots: Array = inv.get("hotspots", [])
+			if hotspots.is_empty():
+				errors.append("Node '%s' investigation has no hotspots." % node_id)
+			for hs in hotspots:
+				if typeof(hs) != TYPE_DICTIONARY:
+					continue
+				var hs_sp := str(hs.get("speaker", ""))
+				var hs_ex := str(hs.get("expression", ""))
+				if hs_sp != "narrator" and not CharacterCatalog.CHARACTER_IDS.has(hs_sp):
+					errors.append("Node '%s' hotspot '%s' has unknown speaker '%s'." % [node_id, str(hs.get("id", "")), hs_sp])
+				if not ExpressionData.PRESET_IDS.has(hs_ex):
+					errors.append("Node '%s' hotspot '%s' has unknown expression '%s'." % [node_id, str(hs.get("id", "")), hs_ex])
+
 		var choices: Array = node.get("choices", [])
 		for ch in choices:
 			if typeof(ch) == TYPE_DICTIONARY:
-				var cnext := str(ch.get("next", ""))
-				if not nodes.has(cnext):
-					errors.append("Node '%s' choice points to missing node '%s'." % [node_id, cnext])
+				var ch_next := str(ch.get("next", ""))
+				if not nodes.has(ch_next):
+					errors.append("Node '%s' choice points to missing node '%s'." % [node_id, ch_next])
 
-		if choices.is_empty() and node.get("next", null) == null and not bool(node.get("endChapter", false)):
-			errors.append("Node '%s' is a dead end without next, choices, or endChapter." % node_id)
+		if choices.is_empty() and typeof(inv) != TYPE_DICTIONARY and node.get("next", null) == null and not bool(node.get("endChapter", false)):
+			errors.append("Node '%s' is a dead end without next, choices, investigation, or endChapter." % node_id)
 
 	# BFS reachability
 	var visited: Dictionary = {}
@@ -137,6 +156,8 @@ func _validate_chapter(chapter: Dictionary) -> PackedStringArray:
 				outgoing.append(str(curr["next"]))
 			if curr.has("conditionFlag") and typeof(curr["conditionFlag"]) == TYPE_DICTIONARY:
 				outgoing.append(str(curr["conditionFlag"].get("fallbackNext", "")))
+			if curr.has("investigation") and typeof(curr["investigation"]) == TYPE_DICTIONARY:
+				outgoing.append(str(curr["investigation"].get("continueNext", "")))
 			for ch in curr.get("choices", []):
 				if typeof(ch) == TYPE_DICTIONARY:
 					outgoing.append(str(ch.get("next", "")))
