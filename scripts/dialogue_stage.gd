@@ -161,6 +161,7 @@ func _populate_choices(choices: Array) -> void:
 
 func _clear_choices() -> void:
 	for child in choice_box.get_children():
+		choice_box.remove_child(child)
 		child.queue_free()
 
 func _update_prompt() -> void:
@@ -177,14 +178,19 @@ func _update_prompt() -> void:
 	else:
 		prompt_label.text = "Click or press Space to continue"
 
-func _unhandled_input(event: InputEvent) -> void:
+func _input(event: InputEvent) -> void:
 	if log_overlay.visible:
 		if event.is_action_pressed("ui_cancel"):
 			log_overlay.visible = false
 		return
 	if event.is_action_pressed("ui_accept"):
 		_advance_story()
-	elif event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
+		get_viewport().set_input_as_handled()
+		return
+	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
+		var hovered: Control = get_viewport().gui_get_hovered_control()
+		if hovered is BaseButton:
+			return
 		if choice_box.get_child_count() == 0:
 			_advance_story()
 
@@ -214,7 +220,7 @@ func _advance_story() -> void:
 		return
 
 	if bool(_node.get("endChapter", false)):
-		var next_chap_id := _chapter.get("nextChapterId", null)
+		var next_chap_id = _chapter.get("nextChapterId", null)
 		if next_chap_id != null and str(next_chap_id) != "":
 			var next_chap := ChapterLoader.get_chapter(str(next_chap_id))
 			if not next_chap.is_empty():

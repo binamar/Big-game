@@ -80,6 +80,36 @@ jobs:
         continue-on-error: true
         run: godot --headless --path . --import
 
+      - name: Check every GDScript file parses (non-blocking, read the log)
+        continue-on-error: true
+        run: |
+          FAIL=0
+          for f in $(find scripts -name '*.gd' | sort); do
+            if ! OUT=$(godot --headless --path . --check-only --script "res://$f" 2>&1); then
+              echo "::error file=$f::GDScript parse/check failed"
+              echo "$OUT"
+              FAIL=1
+            else
+              echo "OK $f"
+            fi
+          done
+          exit $FAIL
+
+      - name: Smoke test - load the main and dialogue scenes headless
+        continue-on-error: true
+        run: |
+          cat > /tmp/smoke.gd <<'EOF'
+          extends SceneTree
+          func _init() -> void:
+          	for p in ["res://scenes/main.tscn", "res://scenes/dialogue_stage.tscn", "res://scenes/studio_inspector.tscn"]:
+          		var ps = load(p)
+          		print("LOAD ", p, " -> ", ps != null)
+          	quit()
+          EOF
+          mkdir -p scripts_tmp && sed 's/^          //' /tmp/smoke.gd > scripts_tmp/smoke.gd
+          godot --headless --path . --script res://scripts_tmp/smoke.gd 2>&1 | tail -40 || true
+          rm -rf scripts_tmp
+
       - name: Validate chapter JSON (non-blocking)
         continue-on-error: true
         run: godot --headless --path . --script res://scripts/validate_chapters.gd
