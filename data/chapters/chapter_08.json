@@ -1,0 +1,114 @@
+{
+  "id": "chapter_08",
+  "number": 8,
+  "title": "Ridge of Smoke",
+  "subtitle": "The Mountain Convoy",
+  "summary": "Torrik rides back up the mountain road to catch Orsen's relief wagons, deliver grain to Selva's village, and warn Rowan.",
+  "startNode": "c8_start",
+  "nextChapterId": "chapter_09",
+  "nodes": {
+    "c8_start": {
+      "id": "c8_start",
+      "backdrop": "mountain_road",
+      "mood": "calm",
+      "particles": "dust",
+      "speaker": "myra",
+      "speakerName": "Myra",
+      "expression": "determined",
+      "characters": [
+        { "id": "myra", "expression": "determined", "position": "left", "active": true },
+        { "id": "torrik", "expression": "tired", "position": "right", "active": false }
+      ],
+      "text": "There—dust rising past the switchback. We overtook Orsen's wagons before the village fork.",
+      "next": "c8_village_stop"
+    },
+    "c8_village_stop": {
+      "id": "c8_village_stop",
+      "backdrop": "ruined_village",
+      "mood": "somber",
+      "particles": "dust",
+      "speaker": "selva",
+      "speakerName": "Selva",
+      "expression": "worried",
+      "characters": [
+        { "id": "selva", "expression": "worried", "position": "left", "active": true },
+        { "id": "torrik", "expression": "worried", "position": "right", "active": false }
+      ],
+      "text": "Torrik! Thank mercy—our shelter cellar ran out of flour yesterday. Did the council send relief?",
+      "next": "c8_relief_choice"
+    },
+    "c8_relief_choice": {
+      "id": "c8_relief_choice",
+      "backdrop": "ruined_village",
+      "mood": "tense",
+      "particles": "dust",
+      "speaker": "torrik",
+      "speakerName": "Torrik",
+      "expression": "worried",
+      "characters": [
+        { "id": "selva", "expression": "worried", "position": "left", "active": false },
+        { "id": "torrik", "expression": "worried", "position": "right", "active": true }
+      ],
+      "text": "Every sack left behind slows the horses climbing to Rowan's camp—yet forty displaced families are waiting outside the burned walls.",
+      "choices": [
+        {
+          "label": "Unload two full wagons of grain and blankets at Selva's shelter",
+          "next": "c8_relief_yes",
+          "setFlags": { "shared_relief": true },
+          "addScore": { "guild_standing": 1 }
+        },
+        {
+          "label": "Push the entire convoy straight to the ridge camp first",
+          "next": "c8_relief_no",
+          "setFlags": { "shared_relief": false }
+        }
+      ]
+    },
+    "c8_relief_yes": {
+      "id": "c8_relief_yes",
+      "backdrop": "ruined_village",
+      "mood": "warm",
+      "particles": "dust",
+      "speaker": "selva",
+      "speakerName": "Selva",
+      "expression": "determined",
+      "characters": [
+        { "id": "selva", "expression": "determined", "position": "left", "active": true },
+        { "id": "torrik", "expression": "determined", "position": "right", "active": false }
+      ],
+      "text": "Our people won't forget this. Take six of our younger runners with torches—we know the goat path straight up to Rowan's watchfire!",
+      "next": "c8_camp_arrive"
+    },
+    "c8_relief_no": {
+      "id": "c8_relief_no",
+      "backdrop": "ruined_village",
+      "mood": "somber",
+      "particles": "dust",
+      "speaker": "selva",
+      "speakerName": "Selva",
+      "expression": "sad",
+      "characters": [
+        { "id": "selva", "expression": "sad", "position": "left", "active": true },
+        { "id": "torrik", "expression": "sad", "position": "right", "active": false }
+      ],
+      "text": "I understand... if Rowan's line breaks above us, none of us will survive the week anyway. Go quickly.",
+      "next": "c8_camp_arrive"
+    },
+    "c8_camp_arrive": {
+      "id": "c8_camp_arrive",
+      "backdrop": "army_camp_dusk",
+      "mood": "urgent",
+      "particles": "embers",
+      "speaker": "rowan",
+      "speakerName": "Rowan",
+      "expression": "determined",
+      "characters": [
+        { "id": "rowan", "expression": "determined", "position": "left", "active": true },
+        { "id": "haldor", "expression": "determined", "position": "right", "active": false }
+      ],
+      "text": "Commander Haldor? You brought ward outriders—and actual grain! Just in time: Fennick's hired caravan is rolling up the west toll road right now.",
+      "endChapter": true,
+      "next": null
+    }
+  }
+}

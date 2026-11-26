@@ -1,0 +1,130 @@
+{
+  "id": "chapter_07",
+  "number": 7,
+  "title": "The Barred Archive",
+  "subtitle": "Ash in the Vaults",
+  "summary": "Hired arsonists target the duplicate ledgers in the Archive Room; Ilvar, Nova, and Torrik defend the harbor registers.",
+  "startNode": "c7_start",
+  "nextChapterId": "chapter_08",
+  "nodes": {
+    "c7_start": {
+      "id": "c7_start",
+      "backdrop": "night_alley",
+      "mood": "urgent",
+      "particles": "embers",
+      "speaker": "torrik",
+      "speakerName": "Torrik",
+      "expression": "worried",
+      "characters": [
+        { "id": "torrik", "expression": "worried", "position": "left", "active": true },
+        { "id": "myra", "expression": "determined", "position": "right", "active": false }
+      ],
+      "text": "Orsen's wagons are rolling south with Haldor's escort. We rode back into the ward just in time—someone broke the Archive side shutter!",
+      "next": "c7_archive_smoke"
+    },
+    "c7_archive_smoke": {
+      "id": "c7_archive_smoke",
+      "backdrop": "archive_room",
+      "mood": "urgent",
+      "particles": "embers",
+      "speaker": "ilvar",
+      "speakerName": "Ilvar",
+      "expression": "angry",
+      "shake": true,
+      "characters": [
+        { "id": "ilvar", "expression": "angry", "position": "left", "active": true, "shake": true },
+        { "id": "nova", "expression": "determined", "position": "right", "active": false }
+      ],
+      "text": "Keep that bucket moving, Nova! They tipped the oil lamp into the lower tax shelves before we bolted the oak door!",
+      "next": "c7_vault_choice"
+    },
+    "c7_vault_choice": {
+      "id": "c7_vault_choice",
+      "backdrop": "archive_room",
+      "mood": "urgent",
+      "particles": "embers",
+      "speaker": "torrik",
+      "speakerName": "Torrik",
+      "expression": "determined",
+      "characters": [
+        { "id": "ilvar", "expression": "worried", "position": "left", "active": false },
+        { "id": "torrik", "expression": "determined", "position": "right", "active": true }
+      ],
+      "text": "Sparks crawl toward the eastern shelf holding the stamped harbor barge registers while the corridor door shudders under iron bars.",
+      "choices": [
+        {
+          "label": "Drag the heavy iron-bound harbor registers out through the barred window chute",
+          "next": "c7_vault_saved",
+          "setFlags": { "protected_vault": true },
+          "addScore": { "guild_standing": 1 }
+        },
+        {
+          "label": "Hold the corridor door shut with Ilvar while letting the outer shelves burn",
+          "next": "c7_vault_partial",
+          "setFlags": { "protected_vault": false }
+        }
+      ]
+    },
+    "c7_vault_saved": {
+      "id": "c7_vault_saved",
+      "backdrop": "archive_room",
+      "mood": "warm",
+      "particles": "dust",
+      "speaker": "ilvar",
+      "speakerName": "Ilvar",
+      "expression": "determined",
+      "characters": [
+        { "id": "ilvar", "expression": "determined", "position": "left", "active": true },
+        { "id": "torrik", "expression": "tired", "position": "right", "active": false }
+      ],
+      "text": "Not a single harbor stamp lost. Watch bells are ringing—those hired thugs fled down the stairs empty-handed.",
+      "next": "c7_hq_aftermath"
+    },
+    "c7_vault_partial": {
+      "id": "c7_vault_partial",
+      "backdrop": "archive_room",
+      "mood": "somber",
+      "particles": "embers",
+      "speaker": "ilvar",
+      "speakerName": "Ilvar",
+      "expression": "sad",
+      "characters": [
+        { "id": "ilvar", "expression": "sad", "position": "left", "active": true },
+        { "id": "torrik", "expression": "tired", "position": "right", "active": false }
+      ],
+      "text": "We held the door, though half the eastern shelf turned to ash. At least we still have your field notebook and the lockhouse book.",
+      "next": "c7_hq_aftermath"
+    },
+    "c7_hq_aftermath": {
+      "id": "c7_hq_aftermath",
+      "backdrop": "great_guild_headquarters",
+      "mood": "tense",
+      "particles": "none",
+      "speaker": "fennick",
+      "speakerName": "Fennick",
+      "expression": "angry",
+      "characters": [
+        { "id": "fennick", "expression": "angry", "position": "left", "active": true },
+        { "id": "ilvar", "expression": "determined", "position": "right", "active": false }
+      ],
+      "text": "An unfortunate lamp accident, Archivist! Still, the elders will never condemn a Quartermaster while armed caravans hold the mountain pass.",
+      "next": "c7_nova_end"
+    },
+    "c7_nova_end": {
+      "id": "c7_nova_end",
+      "backdrop": "great_guild_headquarters",
+      "mood": "urgent",
+      "particles": "none",
+      "speaker": "nova",
+      "speakerName": "Nova",
+      "expression": "determined",
+      "characters": [
+        { "id": "nova", "expression": "determined", "position": "left", "active": true },
+        { "id": "torrik", "expression": "determined", "position": "right", "active": false }
+      ],
+      "text": "He just confessed his hand. Fennick's hired convoy is crossing the mountain pass right now—and Rowan's picket stands directly in their path.",
+      "endChapter": true,
+      "next": null
+    }
+  }
+}

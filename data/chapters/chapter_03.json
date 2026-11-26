@@ -1,0 +1,145 @@
+{
+  "id": "chapter_03",
+  "number": 3,
+  "title": "Shadows in the Ledger",
+  "subtitle": "The High Quarter Vaults",
+  "summary": "Slipping back through a night alley, Torrik partners with Senior Archivist Ilvar to verify Fennick's duplicate books.",
+  "startNode": "c3_start",
+  "nextChapterId": "chapter_04",
+  "nodes": {
+    "c3_start": {
+      "id": "c3_start",
+      "backdrop": "night_alley",
+      "mood": "tense",
+      "particles": "none",
+      "speaker": "nova",
+      "speakerName": "Nova",
+      "expression": "worried",
+      "characters": [
+        { "id": "nova", "expression": "worried", "position": "left", "active": true },
+        { "id": "torrik", "expression": "tired", "position": "right", "active": false }
+      ],
+      "text": "Stay under the eaves until the lantern watch turns the corner. Fennick's clerks have been asking Haldor's hall when you return.",
+      "next": "c3_alley_2"
+    },
+    "c3_alley_2": {
+      "id": "c3_alley_2",
+      "backdrop": "night_alley",
+      "mood": "tense",
+      "particles": "none",
+      "speaker": "torrik",
+      "speakerName": "Torrik",
+      "expression": "determined",
+      "characters": [
+        { "id": "nova", "expression": "neutral", "position": "left", "active": false },
+        { "id": "torrik", "expression": "determined", "position": "right", "active": true }
+      ],
+      "text": "Then we go straight to the Archive Room before sunrise. Only Senior Archivist Ilvar holds the duplicate carbon copies.",
+      "next": "c3_archive_enter"
+    },
+    "c3_archive_enter": {
+      "id": "c3_archive_enter",
+      "backdrop": "archive_room",
+      "mood": "warm",
+      "particles": "dust",
+      "speaker": "ilvar",
+      "speakerName": "Ilvar",
+      "expression": "neutral",
+      "characters": [
+        { "id": "ilvar", "expression": "neutral", "position": "left", "active": true },
+        { "id": "torrik", "expression": "tired", "position": "right", "active": false }
+      ],
+      "text": "Wipe the mud from your sleeves before touching my shelves, apprentice. Why wake the vault at the fourth watch?",
+      "next": "c3_ilvar_choice"
+    },
+    "c3_ilvar_choice": {
+      "id": "c3_ilvar_choice",
+      "backdrop": "archive_room",
+      "mood": "tense",
+      "particles": "dust",
+      "speaker": "torrik",
+      "speakerName": "Torrik",
+      "expression": "determined",
+      "characters": [
+        { "id": "ilvar", "expression": "neutral", "position": "left", "active": false },
+        { "id": "torrik", "expression": "determined", "position": "right", "active": true }
+      ],
+      "text": "Ilvar buttons his long coat and waits beside the brass lamp, measuring every word.",
+      "choices": [
+        {
+          "label": "Lay your full field notebook open beside his master archive",
+          "next": "c3_ilvar_ally",
+          "setFlags": { "allied_ilvar": true },
+          "addScore": { "guild_standing": 1 }
+        },
+        {
+          "label": "Ask only to view the Quartermaster's grain seals privately",
+          "next": "c3_ilvar_cautious",
+          "setFlags": { "allied_ilvar": false }
+        }
+      ]
+    },
+    "c3_ilvar_ally": {
+      "id": "c3_ilvar_ally",
+      "backdrop": "archive_room",
+      "mood": "warm",
+      "particles": "dust",
+      "speaker": "ilvar",
+      "speakerName": "Ilvar",
+      "expression": "surprised",
+      "shake": true,
+      "characters": [
+        { "id": "ilvar", "expression": "surprised", "position": "left", "active": true, "shake": true },
+        { "id": "torrik", "expression": "determined", "position": "right", "active": false }
+      ],
+      "text": "These wagon serials were struck out of the winter register last Tuesday! Someone diverted twelve shipments to private river barges.",
+      "next": "c3_hq_confront"
+    },
+    "c3_ilvar_cautious": {
+      "id": "c3_ilvar_cautious",
+      "backdrop": "archive_room",
+      "mood": "somber",
+      "particles": "dust",
+      "speaker": "ilvar",
+      "speakerName": "Ilvar",
+      "expression": "angry",
+      "characters": [
+        { "id": "ilvar", "expression": "angry", "position": "left", "active": true },
+        { "id": "torrik", "expression": "worried", "position": "right", "active": false }
+      ],
+      "text": "Half-truths waste my ink. Still—look at line forty-eight. Twelve winter barges were booked under forged frontier stamps.",
+      "next": "c3_hq_confront"
+    },
+    "c3_hq_confront": {
+      "id": "c3_hq_confront",
+      "backdrop": "great_guild_headquarters",
+      "mood": "tense",
+      "particles": "none",
+      "speaker": "fennick",
+      "speakerName": "Fennick",
+      "expression": "smug",
+      "characters": [
+        { "id": "fennick", "expression": "smug", "position": "left", "active": true },
+        { "id": "torrik", "expression": "determined", "position": "right", "active": false }
+      ],
+      "text": "Leaving the vault so early, Torrik? I trust Archivist Ilvar reminded you that emergency requisitions are sealed by council privilege.",
+      "next": "c3_hq_torrik"
+    },
+    "c3_hq_torrik": {
+      "id": "c3_hq_torrik",
+      "backdrop": "great_guild_headquarters",
+      "mood": "urgent",
+      "particles": "none",
+      "speaker": "torrik",
+      "speakerName": "Torrik",
+      "expression": "angry",
+      "characters": [
+        { "id": "fennick", "expression": "surprised", "position": "left", "active": false },
+        { "id": "torrik", "expression": "angry", "position": "right", "active": true }
+      ],
+      "text": "Not when the river barges carry grain stamped for freezing soldiers. The Council convenes at noon—and every line of my notebook will be read aloud.",
+      "endChapter": true,
+      "next": null
+    }
+  }
+}

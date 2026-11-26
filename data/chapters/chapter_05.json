@@ -1,0 +1,131 @@
+{
+  "id": "chapter_05",
+  "number": 5,
+  "title": "River Barges at Dawn",
+  "subtitle": "The Lockhouse Manifests",
+  "summary": "Myra and Orsen track Fennick's clerks through rain-slicked alleys to recover the private river-barge registers.",
+  "startNode": "c5_start",
+  "nextChapterId": "chapter_06",
+  "nodes": {
+    "c5_start": {
+      "id": "c5_start",
+      "backdrop": "city_square",
+      "mood": "tense",
+      "particles": "dust",
+      "speaker": "orsen",
+      "speakerName": "Orsen",
+      "expression": "determined",
+      "characters": [
+        { "id": "orsen", "expression": "determined", "position": "left", "active": true },
+        { "id": "torrik", "expression": "neutral", "position": "right", "active": false }
+      ],
+      "text": "Before curfew bells rang, two hired carters loaded iron crates from the back alley behind the fountain. No guild escort, just heavy tarps.",
+      "next": "c5_rainy_trail"
+    },
+    "c5_rainy_trail": {
+      "id": "c5_rainy_trail",
+      "backdrop": "rainy_street",
+      "mood": "somber",
+      "particles": "rain",
+      "speaker": "myra",
+      "speakerName": "Myra",
+      "expression": "worried",
+      "characters": [
+        { "id": "myra", "expression": "worried", "position": "left", "active": true },
+        { "id": "orsen", "expression": "determined", "position": "right", "active": false }
+      ],
+      "text": "Wheel ruts turn east toward the canal lockhouse. Rain's filling the grooves fast—we cut through the brick alley now or lose them.",
+      "next": "c5_alley_lockmaster"
+    },
+    "c5_alley_lockmaster": {
+      "id": "c5_alley_lockmaster",
+      "backdrop": "night_alley",
+      "mood": "tense",
+      "particles": "none",
+      "speaker": "torrik",
+      "speakerName": "Torrik",
+      "expression": "surprised",
+      "shake": true,
+      "characters": [
+        { "id": "torrik", "expression": "surprised", "position": "left", "active": true, "shake": true },
+        { "id": "nova", "expression": "neutral", "position": "right", "active": false }
+      ],
+      "text": "Wait—the lockhouse clerk dropped his satchel under the wall lantern! And Nova's already holding the gate shut.",
+      "next": "c5_nova_explain"
+    },
+    "c5_nova_explain": {
+      "id": "c5_nova_explain",
+      "backdrop": "night_alley",
+      "mood": "tense",
+      "particles": "none",
+      "speaker": "nova",
+      "speakerName": "Nova",
+      "expression": "tired",
+      "characters": [
+        { "id": "nova", "expression": "tired", "position": "left", "active": true },
+        { "id": "torrik", "expression": "determined", "position": "right", "active": false }
+      ],
+      "text": "He's no mercenary. Fennick threatened to foreclose his mother's mill if he didn't sign false sluice passes. He'll hand over the barge ledger if you keep his name off the arrest warrant.",
+      "next": "c5_lockmaster_choice"
+    },
+    "c5_lockmaster_choice": {
+      "id": "c5_lockmaster_choice",
+      "backdrop": "night_alley",
+      "mood": "somber",
+      "particles": "none",
+      "speaker": "torrik",
+      "speakerName": "Torrik",
+      "expression": "worried",
+      "characters": [
+        { "id": "nova", "expression": "neutral", "position": "left", "active": false },
+        { "id": "torrik", "expression": "worried", "position": "right", "active": true }
+      ],
+      "text": "The trembling clerk clutches the oiled-leather barge register beneath the flickering lantern.",
+      "choices": [
+        {
+          "label": "Guarantee his protection as a witness in exchange for the full ledger",
+          "next": "c5_spare_yes",
+          "setFlags": { "spared_lockmaster": true },
+          "addScore": { "guild_standing": 1 }
+        },
+        {
+          "label": "Confiscate the ledger outright and turn him over to the watch",
+          "next": "c5_spare_no",
+          "setFlags": { "spared_lockmaster": false }
+        }
+      ]
+    },
+    "c5_spare_yes": {
+      "id": "c5_spare_yes",
+      "backdrop": "night_alley",
+      "mood": "warm",
+      "particles": "none",
+      "speaker": "nova",
+      "speakerName": "Nova",
+      "expression": "determined",
+      "characters": [
+        { "id": "nova", "expression": "determined", "position": "left", "active": true },
+        { "id": "torrik", "expression": "determined", "position": "right", "active": false }
+      ],
+      "text": "He gave you the dockside routing codes too. All twelve barges were bound for private granaries upriver before turning north to profiteers.",
+      "endChapter": true,
+      "next": null
+    },
+    "c5_spare_no": {
+      "id": "c5_spare_no",
+      "backdrop": "night_alley",
+      "mood": "somber",
+      "particles": "none",
+      "speaker": "orsen",
+      "speakerName": "Orsen",
+      "expression": "tired",
+      "characters": [
+        { "id": "orsen", "expression": "tired", "position": "left", "active": true },
+        { "id": "torrik", "expression": "worried", "position": "right", "active": false }
+      ],
+      "text": "We got the book, though half the dockhands scattered when the watch blew their whistles. Next stop is the forge—we need iron axles ready before morning.",
+      "endChapter": true,
+      "next": null
+    }
+  }
+}

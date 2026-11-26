@@ -1,0 +1,123 @@
+{
+  "id": "chapter_09",
+  "number": 9,
+  "title": "Ash and Tally",
+  "subtitle": "The Tollhouse Intercept",
+  "summary": "Rowan's militia and Orsen's ward smiths block the mountain toll road and recover the diverted iron and grain convoy.",
+  "startNode": "c9_start",
+  "nextChapterId": "chapter_10",
+  "nodes": {
+    "c9_start": {
+      "id": "c9_start",
+      "backdrop": "army_camp_dusk",
+      "mood": "urgent",
+      "particles": "embers",
+      "speaker": "haldor",
+      "speakerName": "Haldor",
+      "expression": "determined",
+      "characters": [
+        { "id": "haldor", "expression": "determined", "position": "left", "active": true },
+        { "id": "rowan", "expression": "determined", "position": "right", "active": false }
+      ],
+      "text": "Roll two empty wagons across the narrow stone bridge. No bloodshed unless they draw steel first—those drivers are guild teamsters under false orders.",
+      "next": "c9_road_blockade"
+    },
+    "c9_road_blockade": {
+      "id": "c9_road_blockade",
+      "backdrop": "mountain_road",
+      "mood": "tense",
+      "particles": "dust",
+      "speaker": "rowan",
+      "speakerName": "Rowan",
+      "expression": "angry",
+      "shake": true,
+      "characters": [
+        { "id": "rowan", "expression": "angry", "position": "left", "active": true, "shake": true },
+        { "id": "orsen", "expression": "determined", "position": "right", "active": false }
+      ],
+      "text": "Halt the lead mules! Look at the iron crates under those tarps—every ingot still bears Orsen's Outer Ward foundry mark!",
+      "next": "c9_torrik_read"
+    },
+    "c9_torrik_read": {
+      "id": "c9_torrik_read",
+      "backdrop": "mountain_road",
+      "mood": "tense",
+      "particles": "dust",
+      "speaker": "torrik",
+      "speakerName": "Torrik",
+      "expression": "determined",
+      "characters": [
+        { "id": "torrik", "expression": "determined", "position": "left", "active": true },
+        { "id": "nova", "expression": "neutral", "position": "right", "active": false }
+      ],
+      "text": "Teamsters—look at the Council audit writ and the lockhouse book! Quartermaster Fennick forged your manifests to sell winter iron across the border!",
+      "next": "c9_check_lockmaster"
+    },
+    "c9_check_lockmaster": {
+      "id": "c9_check_lockmaster",
+      "backdrop": "mountain_road",
+      "mood": "calm",
+      "particles": "dust",
+      "speaker": "nova",
+      "speakerName": "Nova",
+      "expression": "determined",
+      "characters": [
+        { "id": "nova", "expression": "determined", "position": "left", "active": true },
+        { "id": "torrik", "expression": "neutral", "position": "right", "active": false }
+      ],
+      "text": "The lead wagoner recognizes the lockhouse clerk's own handwriting in your ledger—they're dropping their reins and uncoupling the caravan.",
+      "conditionFlag": {
+        "flag": "spared_lockmaster",
+        "equals": true,
+        "fallbackNext": "c9_tense_standoff"
+      },
+      "next": "c9_peaceful_surrender"
+    },
+    "c9_peaceful_surrender": {
+      "id": "c9_peaceful_surrender",
+      "backdrop": "mountain_road",
+      "mood": "warm",
+      "particles": "dust",
+      "speaker": "orsen",
+      "speakerName": "Orsen",
+      "expression": "determined",
+      "characters": [
+        { "id": "orsen", "expression": "determined", "position": "left", "active": true },
+        { "id": "rowan", "expression": "neutral", "position": "right", "active": false }
+      ],
+      "text": "Not a single bolt fired. Sixteen iron-and-grain carts recovered intact—and the drivers agreed to testify before the Council.",
+      "next": "c9_village_return"
+    },
+    "c9_tense_standoff": {
+      "id": "c9_tense_standoff",
+      "backdrop": "mountain_road",
+      "mood": "urgent",
+      "particles": "dust",
+      "speaker": "rowan",
+      "speakerName": "Rowan",
+      "expression": "tired",
+      "characters": [
+        { "id": "rowan", "expression": "tired", "position": "left", "active": true },
+        { "id": "orsen", "expression": "angry", "position": "right", "active": false }
+      ],
+      "text": "Fennick's hired outriders bolted down the ravine when they saw Haldor's pikes. Two carts overturned, yet twelve full wagons are ours.",
+      "next": "c9_village_return"
+    },
+    "c9_village_return": {
+      "id": "c9_village_return",
+      "backdrop": "ruined_village",
+      "mood": "warm",
+      "particles": "dust",
+      "speaker": "selva",
+      "speakerName": "Selva",
+      "expression": "neutral",
+      "characters": [
+        { "id": "selva", "expression": "neutral", "position": "left", "active": true },
+        { "id": "rowan", "expression": "neutral", "position": "right", "active": false }
+      ],
+      "text": "The road belongs to the wards again. Now take those recovered manifests back to the High Quarter and finish what you started, Torrik.",
+      "endChapter": true,
+      "next": null
+    }
+  }
+}

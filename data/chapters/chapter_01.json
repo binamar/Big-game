@@ -1,0 +1,247 @@
+{
+  "id": "chapter_01",
+  "number": 1,
+  "title": "Iron & Ink",
+  "subtitle": "Outer Ward Audit",
+  "summary": "Haldor sends Torrik with a sealed ledger to inspect missing coal and iron shipments in the Outer Ward.",
+  "startNode": "c1_start",
+  "nextChapterId": "chapter_02",
+  "nodes": {
+    "c1_start": {
+      "id": "c1_start",
+      "backdrop": "small_guild_hall",
+      "mood": "warm",
+      "particles": "dust",
+      "speaker": "haldor",
+      "speakerName": "Haldor",
+      "expression": "determined",
+      "characters": [
+        { "id": "haldor", "expression": "determined", "position": "left", "active": true },
+        { "id": "torrik", "expression": "neutral", "position": "right", "active": false }
+      ],
+      "text": "Keep your notebook strapped tight, Torrik. The winter audit leaves no room for smudged ink or polite guesses.",
+      "next": "c1_haldor_2"
+    },
+    "c1_haldor_2": {
+      "id": "c1_haldor_2",
+      "backdrop": "small_guild_hall",
+      "mood": "warm",
+      "particles": "dust",
+      "speaker": "torrik",
+      "speakerName": "Torrik",
+      "expression": "worried",
+      "characters": [
+        { "id": "haldor", "expression": "tired", "position": "left", "active": false },
+        { "id": "torrik", "expression": "worried", "position": "right", "active": true }
+      ],
+      "text": "Three iron carts signed out under the Great Guild seal never reached the Outer Ward ledger. Could it be a dockside miscount?",
+      "next": "c1_haldor_3"
+    },
+    "c1_haldor_3": {
+      "id": "c1_haldor_3",
+      "backdrop": "small_guild_hall",
+      "mood": "calm",
+      "particles": "dust",
+      "speaker": "haldor",
+      "speakerName": "Haldor",
+      "expression": "tired",
+      "characters": [
+        { "id": "haldor", "expression": "tired", "position": "left", "active": true },
+        { "id": "torrik", "expression": "determined", "position": "right", "active": false }
+      ],
+      "text": "Ask Orsen at the forge before you repeat that hope aloud. Start at his workshop, then check the square.",
+      "next": "c1_forge_arrive"
+    },
+    "c1_forge_arrive": {
+      "id": "c1_forge_arrive",
+      "backdrop": "blacksmith_workshop",
+      "mood": "tense",
+      "particles": "embers",
+      "speaker": "narrator",
+      "speakerName": "Narrator",
+      "expression": "neutral",
+      "characters": [
+        { "id": "orsen", "expression": "angry", "position": "left", "active": false },
+        { "id": "torrik", "expression": "neutral", "position": "right", "active": false }
+      ],
+      "text": "Heat from the low hearth washes across Orsen's soot-darkened apron. His hammers sit silent along the rack.",
+      "next": "c1_orsen_greet"
+    },
+    "c1_orsen_greet": {
+      "id": "c1_orsen_greet",
+      "backdrop": "blacksmith_workshop",
+      "mood": "tense",
+      "particles": "embers",
+      "speaker": "orsen",
+      "speakerName": "Orsen",
+      "expression": "angry",
+      "characters": [
+        { "id": "orsen", "expression": "angry", "position": "left", "active": true },
+        { "id": "torrik", "expression": "worried", "position": "right", "active": false }
+      ],
+      "text": "Another clerk with clean cuffs and a fresh notebook? Tell the High Quarter I cannot shoe cavalry with cold coal and empty promises.",
+      "next": "c1_orsen_choice"
+    },
+    "c1_orsen_choice": {
+      "id": "c1_orsen_choice",
+      "backdrop": "blacksmith_workshop",
+      "mood": "tense",
+      "particles": "embers",
+      "speaker": "torrik",
+      "speakerName": "Torrik",
+      "expression": "worried",
+      "characters": [
+        { "id": "orsen", "expression": "angry", "position": "left", "active": false },
+        { "id": "torrik", "expression": "worried", "position": "right", "active": true }
+      ],
+      "text": "Orsen grips the edge of his anvil, waiting to see whether I came to blame him or actually count the coal.",
+      "choices": [
+        {
+          "label": "Open the audit ledger and show the missing cart numbers",
+          "next": "c1_orsen_honest",
+          "setFlags": { "trust_orsen": true },
+          "addScore": { "guild_standing": 1 }
+        },
+        {
+          "label": "Invoke the Great Guild seal and demand his forge receipts",
+          "next": "c1_orsen_strict",
+          "setFlags": { "trust_orsen": false }
+        }
+      ]
+    },
+    "c1_orsen_honest": {
+      "id": "c1_orsen_honest",
+      "backdrop": "blacksmith_workshop",
+      "mood": "warm",
+      "particles": "embers",
+      "speaker": "orsen",
+      "speakerName": "Orsen",
+      "expression": "determined",
+      "characters": [
+        { "id": "orsen", "expression": "determined", "position": "left", "active": true },
+        { "id": "torrik", "expression": "determined", "position": "right", "active": false }
+      ],
+      "text": "Good. You actually marked the wagon weights. Take my stamped chalk tally—someone diverted the north carts past the market gate.",
+      "next": "c1_square_arrive"
+    },
+    "c1_orsen_strict": {
+      "id": "c1_orsen_strict",
+      "backdrop": "blacksmith_workshop",
+      "mood": "tense",
+      "particles": "embers",
+      "speaker": "orsen",
+      "speakerName": "Orsen",
+      "expression": "tired",
+      "characters": [
+        { "id": "orsen", "expression": "tired", "position": "left", "active": true },
+        { "id": "torrik", "expression": "neutral", "position": "right", "active": false }
+      ],
+      "text": "Take the slips off the hook if you want paper. Just remember paper won't keep the border horses shod when the pass freezes.",
+      "next": "c1_square_arrive"
+    },
+    "c1_square_arrive": {
+      "id": "c1_square_arrive",
+      "backdrop": "city_square",
+      "mood": "calm",
+      "particles": "dust",
+      "speaker": "fennick",
+      "speakerName": "Fennick",
+      "expression": "smug",
+      "characters": [
+        { "id": "fennick", "expression": "smug", "position": "left", "active": true },
+        { "id": "torrik", "expression": "neutral", "position": "right", "active": false }
+      ],
+      "text": "Ah, young Torrik! Always scribbling in the margins. Surely you aren't troubling honest merchants over a minor freight delay?",
+      "next": "c1_fennick_choice"
+    },
+    "c1_fennick_choice": {
+      "id": "c1_fennick_choice",
+      "backdrop": "city_square",
+      "mood": "tense",
+      "particles": "dust",
+      "speaker": "torrik",
+      "speakerName": "Torrik",
+      "expression": "determined",
+      "characters": [
+        { "id": "fennick", "expression": "smug", "position": "left", "active": false },
+        { "id": "torrik", "expression": "determined", "position": "right", "active": true }
+      ],
+      "text": "Fennick adjusts his gold-trimmed cloak as townsfolk pass the dry fountain. He wants me to close the notebook right here.",
+      "choices": [
+        {
+          "label": "Challenge his shipping manifest openly beside the fountain",
+          "next": "c1_fennick_challenge",
+          "setFlags": { "confronted_fennick": true },
+          "addScore": { "guild_standing": 1 }
+        },
+        {
+          "label": "Pocket the discrepancy quietly and keep observing",
+          "next": "c1_fennick_quiet",
+          "setFlags": { "confronted_fennick": false }
+        }
+      ]
+    },
+    "c1_fennick_challenge": {
+      "id": "c1_fennick_challenge",
+      "backdrop": "city_square",
+      "mood": "tense",
+      "particles": "dust",
+      "speaker": "fennick",
+      "speakerName": "Fennick",
+      "expression": "angry",
+      "shake": true,
+      "characters": [
+        { "id": "fennick", "expression": "angry", "position": "left", "active": true, "shake": true },
+        { "id": "torrik", "expression": "determined", "position": "right", "active": false }
+      ],
+      "text": "Careful, clerk. Questions shouted in a crowded square carry farther than your rank can afford.",
+      "next": "c1_rainy_arrival"
+    },
+    "c1_fennick_quiet": {
+      "id": "c1_fennick_quiet",
+      "backdrop": "city_square",
+      "mood": "calm",
+      "particles": "dust",
+      "speaker": "fennick",
+      "speakerName": "Fennick",
+      "expression": "smug",
+      "characters": [
+        { "id": "fennick", "expression": "smug", "position": "left", "active": true },
+        { "id": "torrik", "expression": "neutral", "position": "right", "active": false }
+      ],
+      "text": "Sensible lad. Leave the high ledgers to the Quartermaster's office and stick to counting nails.",
+      "next": "c1_rainy_arrival"
+    },
+    "c1_rainy_arrival": {
+      "id": "c1_rainy_arrival",
+      "backdrop": "rainy_street",
+      "mood": "somber",
+      "particles": "rain",
+      "speaker": "myra",
+      "speakerName": "Myra",
+      "expression": "worried",
+      "characters": [
+        { "id": "myra", "expression": "worried", "position": "left", "active": true },
+        { "id": "torrik", "expression": "surprised", "position": "right", "active": false }
+      ],
+      "text": "Torrik! Good—I caught you before dusk. Rain's washing out the south track, and the border camp sent word: no grain arrived at all.",
+      "next": "c1_myra_end"
+    },
+    "c1_myra_end": {
+      "id": "c1_myra_end",
+      "backdrop": "rainy_street",
+      "mood": "urgent",
+      "particles": "rain",
+      "speaker": "torrik",
+      "speakerName": "Torrik",
+      "expression": "determined",
+      "characters": [
+        { "id": "myra", "expression": "determined", "position": "left", "active": false },
+        { "id": "torrik", "expression": "determined", "position": "right", "active": true }
+      ],
+      "text": "Then the outer audit cannot stay inside the walls. Pack your satchel, Myra—we ride for the dry valley at dawn.",
+      "endChapter": true,
+      "next": null
+    }
+  }
+}

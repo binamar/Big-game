@@ -1,0 +1,108 @@
+{
+  "id": "chapter_04",
+  "number": 4,
+  "title": "Before the Council",
+  "subtitle": "Preliminary Hearing",
+  "summary": "In the Council Chamber, Fennick stalls the committee into a forty-eight-hour recess to buy time for his river barges.",
+  "startNode": "c4_start",
+  "nextChapterId": "chapter_05",
+  "nodes": {
+    "c4_start": {
+      "id": "c4_start",
+      "backdrop": "council_chamber",
+      "mood": "tense",
+      "particles": "none",
+      "speaker": "haldor",
+      "speakerName": "Haldor",
+      "expression": "determined",
+      "characters": [
+        { "id": "haldor", "expression": "determined", "position": "left", "active": true },
+        { "id": "fennick", "expression": "smug", "position": "right", "active": false }
+      ],
+      "text": "The gallery is full. Lay your preliminary audit across the dais, Torrik—no whispers, only numbers.",
+      "next": "c4_fennick_defense"
+    },
+    "c4_fennick_defense": {
+      "id": "c4_fennick_defense",
+      "backdrop": "council_chamber",
+      "mood": "tense",
+      "particles": "none",
+      "speaker": "fennick",
+      "speakerName": "Fennick",
+      "expression": "smug",
+      "characters": [
+        { "id": "fennick", "expression": "smug", "position": "left", "active": true },
+        { "id": "torrik", "expression": "determined", "position": "right", "active": false }
+      ],
+      "text": "Honored elders, an apprentice's ink-blots prove only clerical haste. Where are the lockhouse barge manifests bearing my signature?",
+      "next": "c4_check_receipts"
+    },
+    "c4_check_receipts": {
+      "id": "c4_check_receipts",
+      "backdrop": "council_chamber",
+      "mood": "urgent",
+      "particles": "none",
+      "speaker": "rowan",
+      "speakerName": "Rowan",
+      "expression": "determined",
+      "characters": [
+        { "id": "rowan", "expression": "determined", "position": "left", "active": true },
+        { "id": "selva", "expression": "determined", "position": "right", "active": false }
+      ],
+      "text": "Our unsigned camp stubs are right here at the rail, Quartermaster—and forty villages stand behind them.",
+      "conditionFlag": {
+        "flag": "saved_receipts",
+        "equals": true,
+        "fallbackNext": "c4_branch_stall"
+      },
+      "next": "c4_recess_strong"
+    },
+    "c4_recess_strong": {
+      "id": "c4_recess_strong",
+      "backdrop": "council_chamber",
+      "mood": "warm",
+      "particles": "none",
+      "speaker": "ilvar",
+      "speakerName": "Ilvar",
+      "expression": "determined",
+      "characters": [
+        { "id": "ilvar", "expression": "determined", "position": "left", "active": true },
+        { "id": "fennick", "expression": "angry", "position": "right", "active": false, "shake": true }
+      ],
+      "shake": true,
+      "text": "The camp stubs match the struck archive serials. The Council grants a forty-eight-hour writ to seize the lockhouse barge manifests.",
+      "next": "c4_hall_plan"
+    },
+    "c4_branch_stall": {
+      "id": "c4_branch_stall",
+      "backdrop": "council_chamber",
+      "mood": "somber",
+      "particles": "none",
+      "speaker": "fennick",
+      "speakerName": "Fennick",
+      "expression": "smug",
+      "characters": [
+        { "id": "fennick", "expression": "smug", "position": "left", "active": true },
+        { "id": "torrik", "expression": "angry", "position": "right", "active": false }
+      ],
+      "text": "Copies without wax seals? The elders order a forty-eight-hour recess. Plenty of time for honest river freight to clear the sluices.",
+      "next": "c4_hall_plan"
+    },
+    "c4_hall_plan": {
+      "id": "c4_hall_plan",
+      "backdrop": "small_guild_hall",
+      "mood": "urgent",
+      "particles": "dust",
+      "speaker": "myra",
+      "speakerName": "Myra",
+      "expression": "determined",
+      "characters": [
+        { "id": "myra", "expression": "determined", "position": "left", "active": true },
+        { "id": "torrik", "expression": "determined", "position": "right", "active": false }
+      ],
+      "text": "Forty-eight hours means Fennick's factors will try to move those barges before dawn. Meet Orsen and me at the lower square!",
+      "endChapter": true,
+      "next": null
+    }
+  }
+}

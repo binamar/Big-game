@@ -1,0 +1,13 @@
+# Godot 4+ ignores
+.godot/
+*.translation
+
+# Android / export build artifacts
+build/
+*.apk
+*.aab
+*.keystore
+
+# OS / editor noise
+.DS_Store
+Thumbs.db

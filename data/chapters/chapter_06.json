@@ -1,0 +1,107 @@
+{
+  "id": "chapter_06",
+  "number": 6,
+  "title": "The Forge's Oath",
+  "subtitle": "Wagons & Seed Grain",
+  "summary": "Orsen's outer-ward smiths refit heavy relief wagons while Haldor commits his own riders to escort supplies across the dry valley.",
+  "startNode": "c6_start",
+  "nextChapterId": "chapter_07",
+  "nodes": {
+    "c6_start": {
+      "id": "c6_start",
+      "backdrop": "blacksmith_workshop",
+      "mood": "warm",
+      "particles": "embers",
+      "speaker": "orsen",
+      "speakerName": "Orsen",
+      "expression": "determined",
+      "characters": [
+        { "id": "orsen", "expression": "determined", "position": "left", "active": true },
+        { "id": "torrik", "expression": "tired", "position": "right", "active": false }
+      ],
+      "text": "Put down that quill and grab the bellows rope, Torrik. If we're hauling seized barge grain up the pass, these wagon rims need iron before dawn.",
+      "next": "c6_orsen_check"
+    },
+    "c6_orsen_check": {
+      "id": "c6_orsen_check",
+      "backdrop": "blacksmith_workshop",
+      "mood": "warm",
+      "particles": "embers",
+      "speaker": "orsen",
+      "speakerName": "Orsen",
+      "expression": "neutral",
+      "characters": [
+        { "id": "orsen", "expression": "neutral", "position": "left", "active": true },
+        { "id": "torrik", "expression": "neutral", "position": "right", "active": false }
+      ],
+      "text": "My apprentices stayed past midnight because you treated this forge fairly on day one.",
+      "conditionFlag": {
+        "flag": "trust_orsen",
+        "equals": true,
+        "fallbackNext": "c6_orsen_cool"
+      },
+      "next": "c6_orsen_warm"
+    },
+    "c6_orsen_warm": {
+      "id": "c6_orsen_warm",
+      "backdrop": "blacksmith_workshop",
+      "mood": "warm",
+      "particles": "embers",
+      "speaker": "orsen",
+      "speakerName": "Orsen",
+      "expression": "determined",
+      "characters": [
+        { "id": "orsen", "expression": "determined", "position": "left", "active": true },
+        { "id": "torrik", "expression": "determined", "position": "right", "active": false }
+      ],
+      "text": "Every wheelwright in the ward pitched in spare bar-iron. Six wagons are ready to roll.",
+      "next": "c6_hall_haldor"
+    },
+    "c6_orsen_cool": {
+      "id": "c6_orsen_cool",
+      "backdrop": "blacksmith_workshop",
+      "mood": "tense",
+      "particles": "embers",
+      "speaker": "orsen",
+      "speakerName": "Orsen",
+      "expression": "tired",
+      "characters": [
+        { "id": "orsen", "expression": "tired", "position": "left", "active": true },
+        { "id": "torrik", "expression": "worried", "position": "right", "active": false }
+      ],
+      "text": "Truth is, I'm not doing this for the Great Guild seal you waved earlier—I'm doing it because my cousin farms that dry valley.",
+      "next": "c6_hall_haldor"
+    },
+    "c6_hall_haldor": {
+      "id": "c6_hall_haldor",
+      "backdrop": "small_guild_hall",
+      "mood": "calm",
+      "particles": "dust",
+      "speaker": "haldor",
+      "speakerName": "Haldor",
+      "expression": "determined",
+      "characters": [
+        { "id": "haldor", "expression": "determined", "position": "left", "active": true },
+        { "id": "torrik", "expression": "determined", "position": "right", "active": false }
+      ],
+      "text": "I've signed out eight outer-ward outriders to guard the wagons. Fennick's clerks tried to countermand the order—I tore the writ in half.",
+      "next": "c6_farmland_roll"
+    },
+    "c6_farmland_roll": {
+      "id": "c6_farmland_roll",
+      "backdrop": "dry_farmland",
+      "mood": "bleak",
+      "particles": "dust",
+      "speaker": "myra",
+      "speakerName": "Myra",
+      "expression": "worried",
+      "characters": [
+        { "id": "myra", "expression": "worried", "position": "left", "active": true },
+        { "id": "torrik", "expression": "surprised", "position": "right", "active": false }
+      ],
+      "text": "Hold up! Smoke over the High Quarter tower—no, look back toward the Great Guild roofs. Someone's signaling from the Archive Room window!",
+      "endChapter": true,
+      "next": null
+    }
+  }
+}

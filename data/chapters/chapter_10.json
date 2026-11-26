@@ -1,0 +1,160 @@
+{
+  "id": "chapter_10",
+  "number": 10,
+  "title": "The Open Ledger",
+  "subtitle": "Charter Reckoning",
+  "summary": "In the final Council assembly, every collected witness, receipt, and saved archive decides the future of the Guild.",
+  "startNode": "c10_start",
+  "nextChapterId": null,
+  "nodes": {
+    "c10_start": {
+      "id": "c10_start",
+      "backdrop": "great_guild_headquarters",
+      "mood": "calm",
+      "particles": "none",
+      "speaker": "narrator",
+      "speakerName": "Narrator",
+      "expression": "neutral",
+      "characters": [
+        { "id": "torrik", "expression": "determined", "position": "left", "active": false },
+        { "id": "myra", "expression": "determined", "position": "right", "active": false }
+      ],
+      "text": "At midday, townsfolk, ward smiths, and border militia crowd the marble steps outside the Great Guild Headquarters as the final bell tolls.",
+      "next": "c10_council_open"
+    },
+    "c10_council_open": {
+      "id": "c10_council_open",
+      "backdrop": "council_chamber",
+      "mood": "tense",
+      "particles": "none",
+      "speaker": "fennick",
+      "speakerName": "Fennick",
+      "expression": "angry",
+      "characters": [
+        { "id": "fennick", "expression": "angry", "position": "left", "active": true },
+        { "id": "torrik", "expression": "determined", "position": "right", "active": false }
+      ],
+      "text": "This junior clerk broke council recess, commandeered outer-ward riders, and seized guild freight on a mountain road!",
+      "next": "c10_torrik_present"
+    },
+    "c10_torrik_present": {
+      "id": "c10_torrik_present",
+      "backdrop": "council_chamber",
+      "mood": "urgent",
+      "particles": "none",
+      "speaker": "torrik",
+      "speakerName": "Torrik",
+      "expression": "determined",
+      "characters": [
+        { "id": "fennick", "expression": "worried", "position": "left", "active": false },
+        { "id": "torrik", "expression": "determined", "position": "right", "active": true }
+      ],
+      "text": "And beside my field notebook stand the outer-ward smiths, the East Ridge shield-bearers, the displaced villagers, and the lockhouse registers.",
+      "next": "c10_check_vault"
+    },
+    "c10_check_vault": {
+      "id": "c10_check_vault",
+      "backdrop": "council_chamber",
+      "mood": "warm",
+      "particles": "none",
+      "speaker": "ilvar",
+      "speakerName": "Ilvar",
+      "expression": "determined",
+      "characters": [
+        { "id": "ilvar", "expression": "determined", "position": "left", "active": true },
+        { "id": "fennick", "expression": "surprised", "position": "right", "active": false, "shake": true }
+      ],
+      "shake": true,
+      "text": "Every harbor stamp rescued from the Archive fire matches the intercepted wagons down to the iron weight.",
+      "conditionFlag": {
+        "flag": "protected_vault",
+        "equals": true,
+        "fallbackNext": "c10_branch_compromise"
+      },
+      "next": "c10_check_selva"
+    },
+    "c10_check_selva": {
+      "id": "c10_check_selva",
+      "backdrop": "council_chamber",
+      "mood": "warm",
+      "particles": "none",
+      "speaker": "selva",
+      "speakerName": "Selva",
+      "expression": "determined",
+      "characters": [
+        { "id": "selva", "expression": "determined", "position": "left", "active": true },
+        { "id": "rowan", "expression": "determined", "position": "right", "active": false }
+      ],
+      "text": "Forty households signed this ledger in charcoal—not for charity, but for an open charter where every ward sees what goes in and out.",
+      "conditionFlag": {
+        "flag": "spoke_for_selva",
+        "equals": true,
+        "fallbackNext": "c10_branch_compromise"
+      },
+      "next": "c10_ending_reform"
+    },
+    "c10_ending_reform": {
+      "id": "c10_ending_reform",
+      "backdrop": "city_square",
+      "mood": "calm",
+      "particles": "dust",
+      "speaker": "haldor",
+      "speakerName": "Haldor",
+      "expression": "determined",
+      "characters": [
+        { "id": "haldor", "expression": "determined", "position": "left", "active": true },
+        { "id": "torrik", "expression": "determined", "position": "right", "active": false }
+      ],
+      "text": "Fennick's seal is broken, and the Council has ratified the Open Ledger Charter. Every outer ward and village post gets an equal copy from this day on.",
+      "next": "c10_epilogue_hall"
+    },
+    "c10_epilogue_hall": {
+      "id": "c10_epilogue_hall",
+      "backdrop": "small_guild_hall",
+      "mood": "warm",
+      "particles": "dust",
+      "speaker": "torrik",
+      "speakerName": "Torrik",
+      "expression": "neutral",
+      "characters": [
+        { "id": "orsen", "expression": "neutral", "position": "left", "active": false },
+        { "id": "torrik", "expression": "neutral", "position": "center", "active": true },
+        { "id": "myra", "expression": "determined", "position": "right", "active": false }
+      ],
+      "text": "Orsen's forge is burning bright again, Selva and Rowan are rebuilding the valley mill, and a clean ledger lies open on the hall table.",
+      "endChapter": true,
+      "next": null
+    },
+    "c10_branch_compromise": {
+      "id": "c10_branch_compromise",
+      "backdrop": "council_chamber",
+      "mood": "somber",
+      "particles": "none",
+      "speaker": "ilvar",
+      "speakerName": "Ilvar",
+      "expression": "tired",
+      "characters": [
+        { "id": "ilvar", "expression": "tired", "position": "left", "active": true },
+        { "id": "fennick", "expression": "worried", "position": "right", "active": false }
+      ],
+      "text": "Enough ink survived to strip Fennick of his Quartermaster post, though the elders refused to open the inner charter to public inspection.",
+      "next": "c10_epilogue_grassroots"
+    },
+    "c10_epilogue_grassroots": {
+      "id": "c10_epilogue_grassroots",
+      "backdrop": "small_guild_hall",
+      "mood": "calm",
+      "particles": "dust",
+      "speaker": "nova",
+      "speakerName": "Nova",
+      "expression": "determined",
+      "characters": [
+        { "id": "nova", "expression": "determined", "position": "left", "active": true },
+        { "id": "torrik", "expression": "determined", "position": "right", "active": false }
+      ],
+      "text": "Then we build the open ledger from the outer wards inward. Myra has couriers ready, and every forge and village already knows whose ink tells the truth.",
+      "endChapter": true,
+      "next": null
+    }
+  }
+}

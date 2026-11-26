@@ -1,0 +1,248 @@
+{
+  "id": "chapter_02",
+  "number": 2,
+  "title": "The Dry Road",
+  "subtitle": "Borderlands & Watchfires",
+  "summary": "Torrik and Myra cross drought-stricken farmland and a ruined village to reach Rowan at the army camp.",
+  "startNode": "c2_start",
+  "nextChapterId": "chapter_03",
+  "nodes": {
+    "c2_start": {
+      "id": "c2_start",
+      "backdrop": "dry_farmland",
+      "mood": "bleak",
+      "particles": "dust",
+      "speaker": "myra",
+      "speakerName": "Myra",
+      "expression": "tired",
+      "characters": [
+        { "id": "myra", "expression": "tired", "position": "left", "active": true },
+        { "id": "torrik", "expression": "worried", "position": "right", "active": false }
+      ],
+      "text": "Look at the mill sails—still for three months. Every irrigation ditch from here to the foothills is cracked clay.",
+      "next": "c2_farmland_2"
+    },
+    "c2_farmland_2": {
+      "id": "c2_farmland_2",
+      "backdrop": "dry_farmland",
+      "mood": "bleak",
+      "particles": "dust",
+      "speaker": "torrik",
+      "speakerName": "Torrik",
+      "expression": "sad",
+      "characters": [
+        { "id": "myra", "expression": "tired", "position": "left", "active": false },
+        { "id": "torrik", "expression": "sad", "position": "right", "active": true }
+      ],
+      "text": "Yet Fennick's ledger listed a full harvest tithe from this valley. Either someone forged the ink or stripped the granaries bare.",
+      "next": "c2_village_arrive"
+    },
+    "c2_village_arrive": {
+      "id": "c2_village_arrive",
+      "backdrop": "ruined_village",
+      "mood": "somber",
+      "particles": "dust",
+      "speaker": "selva",
+      "speakerName": "Selva",
+      "expression": "sad",
+      "characters": [
+        { "id": "selva", "expression": "sad", "position": "left", "active": true },
+        { "id": "torrik", "expression": "worried", "position": "right", "active": false }
+      ],
+      "text": "Mind the loose roof slate. What wasn't burned in last winter's raid was hauled off by tax wagons wearing guild brass.",
+      "next": "c2_selva_2"
+    },
+    "c2_selva_2": {
+      "id": "c2_selva_2",
+      "backdrop": "ruined_village",
+      "mood": "somber",
+      "particles": "dust",
+      "speaker": "selva",
+      "speakerName": "Selva",
+      "expression": "determined",
+      "characters": [
+        { "id": "selva", "expression": "determined", "position": "left", "active": true },
+        { "id": "torrik", "expression": "neutral", "position": "right", "active": false }
+      ],
+      "text": "My brother Rowan is up at the East Ridge camp. If you're carrying a real guild pen, take our village count back to the council.",
+      "next": "c2_selva_choice"
+    },
+    "c2_selva_choice": {
+      "id": "c2_selva_choice",
+      "backdrop": "ruined_village",
+      "mood": "somber",
+      "particles": "dust",
+      "speaker": "torrik",
+      "speakerName": "Torrik",
+      "expression": "worried",
+      "characters": [
+        { "id": "selva", "expression": "worried", "position": "left", "active": false },
+        { "id": "torrik", "expression": "worried", "position": "right", "active": true }
+      ],
+      "text": "Selva holds out a folded petition signed in charcoal by forty displaced households.",
+      "choices": [
+        {
+          "label": "Copy every household name into the official audit ledger",
+          "next": "c2_selva_pledge",
+          "setFlags": { "spoke_for_selva": true },
+          "addScore": { "guild_standing": 1 }
+        },
+        {
+          "label": "Promise to mention the damage verbally once the audit ends",
+          "next": "c2_selva_defer",
+          "setFlags": { "spoke_for_selva": false }
+        }
+      ]
+    },
+    "c2_selva_pledge": {
+      "id": "c2_selva_pledge",
+      "backdrop": "ruined_village",
+      "mood": "warm",
+      "particles": "dust",
+      "speaker": "selva",
+      "speakerName": "Selva",
+      "expression": "determined",
+      "characters": [
+        { "id": "selva", "expression": "determined", "position": "left", "active": true },
+        { "id": "torrik", "expression": "determined", "position": "right", "active": false }
+      ],
+      "text": "Thank you. Tell Rowan I'm holding the lower barn shelter together until relief carts return.",
+      "next": "c2_mountain_nova"
+    },
+    "c2_selva_defer": {
+      "id": "c2_selva_defer",
+      "backdrop": "ruined_village",
+      "mood": "somber",
+      "particles": "dust",
+      "speaker": "selva",
+      "speakerName": "Selva",
+      "expression": "tired",
+      "characters": [
+        { "id": "selva", "expression": "tired", "position": "left", "active": true },
+        { "id": "torrik", "expression": "worried", "position": "right", "active": false }
+      ],
+      "text": "Verbal promises blow away fast on this ridge. See what Rowan says when you look at his shield.",
+      "next": "c2_mountain_nova"
+    },
+    "c2_mountain_nova": {
+      "id": "c2_mountain_nova",
+      "backdrop": "mountain_road",
+      "mood": "calm",
+      "particles": "dust",
+      "speaker": "nova",
+      "speakerName": "Nova",
+      "expression": "neutral",
+      "characters": [
+        { "id": "nova", "expression": "neutral", "position": "left", "active": true },
+        { "id": "myra", "expression": "surprised", "position": "right", "active": false }
+      ],
+      "text": "Slow your mules before the bend. Great Guild outriders checked the toll gate an hour ago—without cargo.",
+      "next": "c2_mountain_myra"
+    },
+    "c2_mountain_myra": {
+      "id": "c2_mountain_myra",
+      "backdrop": "mountain_road",
+      "mood": "tense",
+      "particles": "dust",
+      "speaker": "myra",
+      "speakerName": "Myra",
+      "expression": "determined",
+      "characters": [
+        { "id": "nova", "expression": "neutral", "position": "left", "active": false },
+        { "id": "myra", "expression": "determined", "position": "right", "active": true }
+      ],
+      "text": "Nova never speaks without counting twice. Wait—if the outriders rode empty, where did the grain wagons turn off?",
+      "next": "c2_camp_rowan"
+    },
+    "c2_camp_rowan": {
+      "id": "c2_camp_rowan",
+      "backdrop": "army_camp_dusk",
+      "mood": "urgent",
+      "particles": "embers",
+      "speaker": "rowan",
+      "speakerName": "Rowan",
+      "expression": "tired",
+      "characters": [
+        { "id": "rowan", "expression": "tired", "position": "left", "active": true },
+        { "id": "torrik", "expression": "surprised", "position": "right", "active": false }
+      ],
+      "text": "You're the clerk from Haldor's hall? Look at my shield—split since frostfall—and look at our empty ration crates.",
+      "next": "c2_rowan_2"
+    },
+    "c2_rowan_2": {
+      "id": "c2_rowan_2",
+      "backdrop": "army_camp_dusk",
+      "mood": "urgent",
+      "particles": "embers",
+      "speaker": "rowan",
+      "speakerName": "Rowan",
+      "expression": "angry",
+      "shake": true,
+      "characters": [
+        { "id": "rowan", "expression": "angry", "position": "left", "active": true, "shake": true },
+        { "id": "torrik", "expression": "worried", "position": "right", "active": false }
+      ],
+      "text": "Every requisition scroll stamped by Quartermaster Fennick says we received forty sacks a week. We've eaten watered oats for twenty days.",
+      "next": "c2_rowan_choice"
+    },
+    "c2_rowan_choice": {
+      "id": "c2_rowan_choice",
+      "backdrop": "army_camp_dusk",
+      "mood": "tense",
+      "particles": "embers",
+      "speaker": "torrik",
+      "speakerName": "Torrik",
+      "expression": "determined",
+      "characters": [
+        { "id": "rowan", "expression": "tired", "position": "left", "active": false },
+        { "id": "torrik", "expression": "determined", "position": "right", "active": true }
+      ],
+      "text": "Rowan pulls a bundle of unsigned wax-broken delivery stubs from behind his pierced shield.",
+      "choices": [
+        {
+          "label": "Seal the camp receipts inside your notebook as primary proof",
+          "next": "c2_end_proof",
+          "setFlags": { "saved_receipts": true },
+          "addScore": { "guild_standing": 1 }
+        },
+        {
+          "label": "Copy only the totals so Rowan keeps the originals at camp",
+          "next": "c2_end_totals",
+          "setFlags": { "saved_receipts": false }
+        }
+      ]
+    },
+    "c2_end_proof": {
+      "id": "c2_end_proof",
+      "backdrop": "army_camp_dusk",
+      "mood": "warm",
+      "particles": "embers",
+      "speaker": "rowan",
+      "speakerName": "Rowan",
+      "expression": "determined",
+      "characters": [
+        { "id": "rowan", "expression": "determined", "position": "left", "active": true },
+        { "id": "torrik", "expression": "determined", "position": "right", "active": false }
+      ],
+      "text": "Guard those stubs with your life, Torrik. Tell Selva I'll march down to the council steps myself if the numbers don't hold.",
+      "endChapter": true,
+      "next": null
+    },
+    "c2_end_totals": {
+      "id": "c2_end_totals",
+      "backdrop": "army_camp_dusk",
+      "mood": "somber",
+      "particles": "embers",
+      "speaker": "rowan",
+      "speakerName": "Rowan",
+      "expression": "worried",
+      "characters": [
+        { "id": "rowan", "expression": "worried", "position": "left", "active": true },
+        { "id": "torrik", "expression": "determined", "position": "right", "active": false }
+      ],
+      "text": "Hurry back before the mountain pass shuts. Without matching vault ledgers in the city, no one will believe a soldier's word.",
+      "endChapter": true,
+      "next": null
+    }
+  }
+}
